@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>http://h1:8001/kgm/</loc>
+         <loc>https://geiselsoftware.github.io/KGM-docs/</loc>
          <lastmod>2024-07-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://h1:8001/kgm/abbreviations/</loc>
+         <loc>https://geiselsoftware.github.io/KGM-docs/abbreviations/</loc>
          <lastmod>2024-07-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://h1:8001/kgm/about-mkdocs/</loc>
+         <loc>https://geiselsoftware.github.io/KGM-docs/about-mkdocs/</loc>
          <lastmod>2024-07-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://h1:8001/kgm/addendum/</loc>
+         <loc>https://geiselsoftware.github.io/KGM-docs/addendum/</loc>
          <lastmod>2024-07-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://h1:8001/kgm/backends/</loc>
+         <loc>https://geiselsoftware.github.io/KGM-docs/backends/</loc>
          <lastmod>2024-07-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://h1:8001/kgm/kgm-introduction/</loc>
+         <loc>https://geiselsoftware.github.io/KGM-docs/kgm-introduction/</loc>
          <lastmod>2024-07-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://h1:8001/kgm/kgm-userguide/</loc>
+         <loc>https://geiselsoftware.github.io/KGM-docs/kgm-userguide/</loc>
          <lastmod>2024-07-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>http://h1:8001/kgm/sparql-example/</loc>
+         <loc>https://geiselsoftware.github.io/KGM-docs/sparql-example/</loc>
          <lastmod>2024-07-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
