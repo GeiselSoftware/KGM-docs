@@ -22,7 +22,7 @@
     
     
       
-        <title>Backends - KGM</title>
+        <title>Backends - KGM docs</title>
       
     
     
@@ -80,7 +80,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="KGM" class="md-header__button md-logo" aria-label="KGM" data-md-component="logo">
+    <a href=".." title="KGM docs" class="md-header__button md-logo" aria-label="KGM docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -94,7 +94,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            KGM
+            KGM docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -138,13 +138,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="KGM" class="md-nav__button md-logo" aria-label="KGM" data-md-component="logo">
+    <a href=".." title="KGM docs" class="md-nav__button md-logo" aria-label="KGM docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    KGM
+    KGM docs
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -481,7 +481,7 @@
 
 
 <h1 id="fuseki-setup">Fuseki Setup</h1>
-<p><a href="https://jena.apache.org/documentation/fuseki2/">Apache Jena Fuseki</a> is open-source RDF/SPARQL server. The steps below are to have Fuseki server configured and run to be used as shacled GSE backend.</p>
+<p><a href="https://jena.apache.org/documentation/fuseki2/">Apache Jena Fuseki</a> is open-source <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr>/<abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> server. The steps below are to have Fuseki server configured and run to be used as shacled GSE backend.</p>
 <h2 id="install">Install</h2>
 <p>Fuseki can be downloaded from <a href="https://jena.apache.org/download/index.cgi">Apache Jena Releases</a><br/>
 Use binary distribution archive <code>apache-jena-fuseki-5.0.0.tar.gz</code> Unpack that to location <code>FUSEKI_HOME</code>.</p>
@@ -504,19 +504,19 @@ The reason why you might want to do that it allows you to configure fuseki serve
 ./fuseki-server
 </code></pre></div>
 <p>The command above uses top run directory <code>$FUSEKI_HOME/run</code> and takes default configuration from file <code>$FUSEKI_HOME/run/config.ttl</code>. Jena github has <a href="https://github.com/apache/jena/tree/main/jena-fuseki2/examples">exhaustive list of example configurations</a> you can try to experiment with. You can copy log4j config file from <code>$FUSEKI/webapp</code> to that run directory and tune up logging. </p>
-<h3 id="test-shacl-endpoint">Test SHACL endpoint</h3>
-<p>Place SHACL config file to <code>$FUSEKI_HOME/run</code> and start fuseki:</p>
+<h3 id="test-shacl-endpoint">Test <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> endpoint</h3>
+<p>Place <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> config file to <code>$FUSEKI_HOME/run</code> and start fuseki:</p>
 <div class="highlight"><pre><span></span><code>cd $FUSEKI_HOME
 wget -O run/config-shacl.ttl https://raw.githubusercontent.com/apache/jena/main/jena-fuseki2/examples/config-shacl.ttl
 ./fuseki-server --config=run/config-shacl.ttl
 </code></pre></div>
-<p>This fuseki server configuration will create transient in-memory dataset named as <code>/dataset</code> and configure additional SHACL endpoint. You can use KGM supplied Alice-Bob example files to test SHACL validation:</p>
+<p>This fuseki server configuration will create transient in-memory dataset named as <code>/dataset</code> and configure additional <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> endpoint. You can use KGM supplied Alice-Bob example files to test <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> validation:</p>
 <p><div class="highlight"><pre><span></span><code>curl -XPOST --data-binary @$KGM_HOME/examples/alice-bob/ab.ttl  --header &#39;Content-type: text/turtle&#39; http://localhost:3030/dataset?default
 curl -XPOST --data-binary @KGM_HOME/examples/alice-bob/ab.shacl.ttl  --header &#39;Content-type: text/turtle&#39; http://localhost:3030/dataset/shacl?graph=default
 </code></pre></div>
 See also <a href="https://jena.apache.org/documentation/shacl/index.html#integration-with-apache-jena-fuseki">Integration with Apache Jena Fuseki</a></p>
 <h3 id="default-kgm-setup">Default KGM setup</h3>
-<p>By default KGM should have persistent <code>/kgm-default-dataset</code> dataset and SHACL endpoint configured as below. The location of TDB2 directory is <code>$FUSEKI_HOME/kgm-default-dataset</code>.</p>
+<p>By default KGM should have persistent <code>/kgm-default-dataset</code> dataset and <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> endpoint configured as below. The location of TDB2 directory is <code>$FUSEKI_HOME/kgm-default-dataset</code>.</p>
 <div class="highlight"><pre><span></span><code># based on https://github.com/apache/jena/tree/main/jena-fuseki2/examples
 
 PREFIX :        &lt;#&gt;
@@ -546,12 +546,12 @@ PREFIX tdb2:    &lt;http://jena.apache.org/2016/tdb#&gt;
 <div class="highlight"><pre><span></span><code>cd $FUSEKI_HOME
 ./fuseki-server --config=run/config-kgm.ttl
 </code></pre></div></p>
-<p>Alice-Bob upload and SHACL validation test:
+<p>Alice-Bob upload and <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> validation test:
 <div class="highlight"><pre><span></span><code>curl -XPOST --data-binary @$KGM_HOME/examples/alice-bob/ab.ttl  --header &#39;Content-type: text/turtle&#39; http://localhost:3030/kgm-default-dataset?default
 curl -XPOST --data-binary @$KGM_HOME/examples/alice-bob/ab.shacl.ttl  --header &#39;Content-type: text/turtle&#39; http://localhost:3030/kgm-default-dataset/shacl?graph=default
 </code></pre></div></p>
 <h2 id="misc">Misc</h2>
-<p>Code location where Fuseki server code implements SHACL validation
+<p>Code location where Fuseki server code implements <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> validation
 <div class="highlight"><pre><span></span><code>https://github.com/apache/jena/blob/b31a480975d9cf511ae0d5f2c11a3898b453d664/jena-fuseki2/jena-fuseki-core/src/main/java/org/apache/jena/fuseki/servlets/SHACL_Validation.java#L66
 </code></pre></div></p>
 <hr />
