@@ -421,7 +421,7 @@
 <li><em>nw:</em> - NorthWind examples</li>
 </ul>
 <h3 id="prefix-kgm">Prefix <em>kgm:</em></h3>
-<p><em>kgm:</em> is prefix introduced for KGM users. It defines set of RDF predicates used to specify how certain RDF graph is stored in GDB server:
+<p><em>kgm:</em> is prefix introduced for KGM users. It defines set of <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> predicates used to specify how certain <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> graph is stored in GDB server:
 <div class="highlight"><pre><span></span><code>@prefix kgm: &lt;http://www.geisel-software.com/RDF/KGM#&gt; .
 @prefix mydata: &lt;mydata:&gt; .
 
@@ -448,9 +448,9 @@ mydata:g2 kgm:is-shacl-graph-for mydata:g1 .
 <div class="highlight"><pre><span></span><code>@prefix ab: &lt;http://www.geisel-software.com/RDF/alice-bob#&gt; .
 @prefix nw: &lt;http://www.geisel-software.com/RDF/NorthWind#&gt; .
 </code></pre></div>
-<h2 id="appendix-b-shacl-notes">Appendix B: SHACL notes</h2>
-<p>Example of SHACL definitions: <a href="https://github.com/pyjanitor-devs/pyjviz/blob/main/rdflog.shacl.ttl">https://github.com/pyjanitor-devs/pyjviz/blob/main/rdflog.shacl.ttl</a></p>
-<p>TopQuandrant SHACL implementation: <a href="https://github.com/TopQuadrant/shacl">https://github.com/TopQuadrant/shacl</a></p>
+<h2 id="appendix-b-shacl-notes">Appendix B: <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> notes</h2>
+<p>Example of <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> definitions: <a href="https://github.com/pyjanitor-devs/pyjviz/blob/main/rdflog.shacl.ttl">https://github.com/pyjanitor-devs/pyjviz/blob/main/rdflog.shacl.ttl</a></p>
+<p>TopQuandrant <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> implementation: <a href="https://github.com/TopQuadrant/shacl">https://github.com/TopQuadrant/shacl</a></p>
 <p>Validate script located at <code>src/main/command/</code>, file <code>shaclvalidate.sh</code>
 Use binary distrib from https://repo1.maven.org/maven2/org/topbraid/shacl/</p>
 
