@@ -11,6 +11,7 @@
 *[SHACL]: https://en.wikipedia.org/wiki/SHACL
 *[literal]: https://www.w3.org/TR/rdf12-turtle/#literals
 *[literals]: https://www.w3.org/TR/rdf12-turtle/#literals
+*[KGM]: https://geiselsoftware.github.io/KGM-docs/
 
 [R<span/>DF]: https://en.wikipedia.org/wiki/Resource_Description_Framework
 [R<span/>DF Literal]: https://www.w3.org/TR/rdf12-turtle/#literals

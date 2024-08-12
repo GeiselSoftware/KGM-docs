@@ -35,5 +35,5 @@ extra_css:
 nav:
   - KG for practical software engeneering: kgm-introduction.md
   - KGM - Used Guide: kgm-userguide.md
-  - Backends: backends.md
+  - Backends - Fuseki: backends.md
   - Addendum: addendum.md
