@@ -1,0 +1,24 @@
+# based on https://github.com/apache/jena/tree/main/jena-fuseki2/examples
+
+PREFIX :        <#>
+PREFIX fuseki:  <http://jena.apache.org/fuseki#>
+PREFIX rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ja:      <http://jena.hpl.hp.com/2005/11/Assembler#>
+PREFIX tdb2:    <http://jena.apache.org/2016/tdb#>
+
+[] rdf:type fuseki:Server; fuseki:services ( :service ). # see also https://www.w3.org/TR/rdf12-turtle/#collections
+
+:service rdf:type fuseki:Service;
+    fuseki:name "kgm-default-dataset";
+    fuseki:dataset :dataset_tdb2;
+    fuseki:endpoint [ fuseki:operation fuseki:query; fuseki:name "query" ];
+    fuseki:endpoint [ fuseki:operation fuseki:update; fuseki:name "update" ];
+    fuseki:endpoint [ fuseki:operation fuseki:shacl; fuseki:name "shacl" ];
+.
+
+:dataset_tdb2 rdf:type  tdb2:DatasetTDB2;
+              tdb2:location "kgm-default-dataset"; # the tbd2 direction is relative to FUSEKI_HOME, look it up in server log output
+## Optional - with union default for query and update WHERE matching.
+## tdb2:unionDefaultGraph true ;
+.

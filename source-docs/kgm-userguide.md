@@ -1,10 +1,8 @@
-# KGM - User Guide
+# K<span/>GM - User Guide
 
-*kgm* is command-line processor utility which allows user to control and manipulate KGM-controlled graphs in backend graph database.
+*kgm* is command-line processor utility which allows user to control and manipulate K<span/>GM-controlled graphs in backend graph database.
 
 ## Installation
-
-*kgm* is part [kgm python package](https://github.com/GeiselSoftware/KGM/tree/main/py-packages/kgm). It can be installed using usual procedures of python package installations.
 
 ### local `pip install`
 
@@ -14,30 +12,65 @@ $ source ~/venv/kgm/bin/activate
 $ pip install py-packages/kgm
 ```
 
-## Usage
-
-Given .ttl file it is possible to upload the content into GDB using `kgm insert` command. This operation allow to specify **kgm path** to resulting graph in GDB.
+## K<span/>GM path
+KGM provides the way to organize the knowledge graphs in the way similar to files in traditional filesystem. It is always necessary to create KG first to specify *kgm type* and *path* using `kgm new` command:
 
 ```console
+$ kgm new --kgm-graph-type shacl /alice-bob.shacl
+created graph at path /alice-bob.shacl: http://www.geisel-software.com/RDF/KGM#SHACLGraph--40c4faaf-f311-4112-bfec-a945b4f7cdbb
 
-$ kgm graph add /alice-bob http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.data.ttl
-1 graph
-/alice-bob kgm:DataGraph--375b27d0-4ce7-4ae6-a930-3e014d413835
-
-$ kgm graph add --kgm-graph-type shacl /alice-bob.shacl http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.shacl.ttl
-/alice-bob.shacl kgm:SHACLGraph--6b21e3d9-ee71-484d-b6ab-1f57080f2026
+$ kgm new --kgm-graph-type data /alice-bob
+created graph at path /alice-bob: http://www.geisel-software.com/RDF/KGM#DataGraph--5f90e074-5582-4ba6-bcf5-67dc55ed4754
 
 $ kgm ls
-        kgm_path                                         graph_uri
-      /alice-bob <kgm:DataGraph--375b27d0-4ce7-4ae6-a930-3e014d413835>
-/alice-bob.shacl <kgm:SHACLGraph--6b21e3d9-ee71-484d-b6ab-1f57080f2026>
-
+        kgm_path                                                  g
+0        "/alice-bob"  kgm:DataGraph--5f90e074-5582-4ba6-bcf5-67dc55e...
+1  "/alice-bob.shacl"  kgm:SHACLGraph--40c4faaf-f311-4112-bfec-a945b4...
 ```
 
+One of the way to populate KG is to dowload .ttl file using `kgm download` command:
+```console
+$ kgm download /alice-bob.shacl http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.shacl.ttl
+/alice-bob.shacl http://www.geisel-software.com/RDF/KGM#SHACLGraph--40c4faaf-f311-4112-bfec-a945b4f7cdbb
+
+$ kgm download /alice-bob http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.data.ttl
+/alice-bob http://www.geisel-software.com/RDF/KGM#DataGraph--5f90e074-5582-4ba6-bcf5-67dc55ed4754
+
+$ kgm ls
+        kgm_path                                                  g
+0        "/alice-bob"  kgm:DataGraph--5f90e074-5582-4ba6-bcf5-67dc55e...
+1  "/alice-bob.shacl"  kgm:SHACLGraph--40c4faaf-f311-4112-bfec-a945b4...
+```
+
+To access the KG one can use SPARQL console attached to backend database. Using `kgm query` command it is possible to issue SPARQL query:
+```console
+kgm query -Q '
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+prefix ab: <http://www.geisel-software.com/RDF/alice-bob#>
+
+select ?human ?h_name
+where {
+ ?g kgm:path "/alice-bob"
+ graph ?g {
+  ?human rdf:type ab:Human .
+  ?human ab:name ?h_name .
+ }
+}
+'
+```
+
+Output:
+```sh
+        human     h_name
+0    ab:alice    "Alice"
+1      ab:bob      "Bob"
+2  ab:charlie  "Charlie"
+```
+
+
 ## Examples
-
 ### Alice-Bob
-
 data files location:
 
  - [ab.data.ttl] -- data RDF triples
