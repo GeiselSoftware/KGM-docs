@@ -213,7 +213,7 @@
         <li class="md-nav__item">
   <a href="#rdf-and-rdfturtle" class="md-nav__link">
     <span class="md-ellipsis">
-      RDF and RDF/turtle
+      [RDF] and RDF/turtle
     </span>
   </a>
   
@@ -361,7 +361,7 @@
         <li class="md-nav__item">
   <a href="#rdf-and-rdfturtle" class="md-nav__link">
     <span class="md-ellipsis">
-      RDF and RDF/turtle
+      [RDF] and RDF/turtle
     </span>
   </a>
   
@@ -420,10 +420,10 @@
 
 <h1 id="knowlege-graph-for-practical-software-engeneering">Knowlege Graph for Practical Software Engeneering</h1>
 <h2 id="preface">Preface</h2>
-<p>Knowledge Graph and related technologies were introduced by practitioners in the area of <a href="https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning">knowledge representation</a>. Historically KG technologies were used by data analysts and designers with purpose to build various ontologies and taxonomies to cover very wide areas of business and science. <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">Wikidata</a> could be considered as famous example of such efforts - the project provides <a href="https://www.wikidata.org/wiki/Wikidata:Request_a_query#Help_with_a_query"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> interface</a> to allow queries using wikipedia data.</p>
+<p>Knowledge Graph and related technologies were introduced by practitioners in the area of <a href="https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning">knowledge representation</a>. Historically KG technologies were used by data analysts and designers with purpose to build various ontologies and taxonomies to cover very wide areas of business and science. <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">Wikidata</a> could be considered as famous example of such efforts - the project provides <a href="https://www.wikidata.org/wiki/Wikidata:Request_a_query#Help_with_a_query">SPARQL interface</a> to allow queries using wikipedia data.</p>
 <p>This document purpose is to provide practical alternative to the mainstream KG tutorials. After minimalistic introduction we are going to concentrate on few examples of purely technical utilization of <strong>available</strong> KG tech tools. In most cases it will be possible to easily reproduce this document scripts and queries using only python's <a href="https://pypi.org/project/rdflib/">rdflib</a> and <a href="https://pypi.org/project/graphviz/">graphviz</a> packages - i.e. no DB server install would be necessary.</p>
-<h2 id="rdf-and-rdfturtle"><a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">R<span/>DF</a> and <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF/turtle</abbr></h2>
-<p><u>Resource Definition Framework</u> (<a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">R<span/>DF</a>) is standartized way to store the facts in the form of <a href="https://www.w3.org/TR/rdf11-primer/#section-triple">R<span/>DF statements</a>. Each such statement has three parts: <em>subject</em>, <em>predicate</em> and <em>object</em>. The example of few such statements using <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF/turtle</abbr> format is given below:</p>
+<h2 id="rdf-and-rdfturtle">[R<span/>DF] and RDF/turtle</h2>
+<p><u>Resource Definition Framework</u> ([R<span/>DF]) is standartized way to store the facts in the form of <a href="https://www.w3.org/TR/rdf11-primer/#section-triple">R<span/>DF statements</a>. Each such statement has three parts: <em>subject</em>, <em>predicate</em> and <em>object</em>. The example of few such statements using RDF/turtle format is given below:</p>
 <p><div class="highlight"><pre><span></span><code>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 @prefix ab: &lt;http://www.geisel-software.com/RDF/alice-bob#&gt; .
 
@@ -433,28 +433,28 @@ ab:bob rdf:type ab:Human .
 ab:bob ab:name &quot;Bob&quot; .
 ...
 </code></pre></div>
-It is the data fragment from <a href="../examples/alice-bob/ab.data.ttl">ab.data.ttl</a> describing our version of ubiquitous <a href="https://en.wikipedia.org/wiki/Alice_and_Bob">Alice-Bob pair</a>. In plain english it is possible to interpret as:</p>
+It is the data fragment from [ab.data.ttl] describing our version of ubiquitous <a href="https://en.wikipedia.org/wiki/Alice_and_Bob">Alice-Bob pair</a>. In plain english it is possible to interpret as:</p>
 <ul>
 <li>there is a human named Alice identified as <code>ab:alice</code></li>
 <li>there is a human named Bob identified as <code>ab:bob</code></li>
 </ul>
-<p><abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</abbr> is Uniform Resource Identifier. You can quickly glance to <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-1.1.2">few U<span/>RI examples</a> - as you see <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</abbr> is quite practical and familiar notation often used in various web services. E.g. well-known URLs used in web browsers are special kind of <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</abbr>.</p>
-<p>In the example above <code>ab:alice</code> is equivalent to <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</abbr> <code>&lt;http://www.geisel-software.com/RDF/alice-bob#alice&gt;</code>. They both can be used to identify the same person: Alice. <code>ab:alice</code> is an example of <abbr title="https://www.w3.org/TR/2010/NOTE-curie-20101216/">CURIE</abbr> (compact <span>U</span>RI). <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF/turtle</abbr> (or just <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">turtle</abbr>) allows to use compact U<span/>RIs via use of <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">turtle</abbr> <code>@prefix</code> directive. The same example where all statements are shown with prefixes applied:</p>
+<p>URI is Uniform Resource Identifier. You can quickly glance to <a href="https://datatracker.ietf.org/doc/html/rfc3986#section-1.1.2">few U<span/>RI examples</a> - as you see URI is quite practical and familiar notation often used in various web services. E.g. well-known URLs used in web browsers are special kind of URI.</p>
+<p>In the example above <code>ab:alice</code> is equivalent to URI <code>&lt;http://www.geisel-software.com/RDF/alice-bob#alice&gt;</code>. They both can be used to identify the same person: Alice. <code>ab:alice</code> is an example of CURIE (compact <span>U</span>RI). RDF/turtle (or just turtle) allows to use compact U<span/>RIs via use of turtle <code>@prefix</code> directive. The same example where all statements are shown with prefixes applied:</p>
 <div class="highlight"><pre><span></span><code>&lt;http://www.geisel-software.com/RDF/alice-bob#alice&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.geisel-software.com/RDF/alice-bob#Human&gt; .
 &lt;http://www.geisel-software.com/RDF/alice-bob#alice&gt; &lt;http://www.geisel-software.com/RDF/alice-bob#name&gt; &quot;Alice&quot; .
 &lt;http://www.geisel-software.com/RDF/alice-bob#bob&gt; &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&gt; &lt;http://www.geisel-software.com/RDF/alice-bob#Human&gt; .
 &lt;http://www.geisel-software.com/RDF/alice-bob#bob&gt; &lt;http://www.geisel-software.com/RDF/alice-bob#name&gt; &quot;Bob&quot; .
 </code></pre></div>
-<p>As you see <code>ab:</code> was replaced <em>in verbatim</em> with corresponding prefix <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</abbr>, the same opertaion was done for prefix <code>rdf</code>: all using <code>@prefix</code> directives found at the begining of <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">turtle</abbr> file.</p>
-<p><abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">turtle</abbr> rules prescribe to enclose <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URIs</abbr> inside of angle brackets to designate the string between brackets as <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</abbr>. The angle brackets themselves are not part of <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</abbr>. E.g. first line <em>predicate</em> is <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</abbr> <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</code>.</p>
-<p>In the second line of the example you've seen that <em>object</em> could also be <a href="https://www.w3.org/TR/rdf12-turtle/#literals">R<span/>DF Literal</a>. In <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF/turtle</abbr> the string l<span>iterals are in double-quotes to distibguish them from <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URIs</abbr>. E.g. the third statement <em>object</em> is string <em>Alice</em>.</p>
-<p>There are other ways to represent <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triples</abbr>: e.g. <a href="https://en.wikipedia.org/wiki/RDF/XML">R<span/>DF/XML</a>. However <a href="https://en.wikipedia.org/wiki/Turtle_(syntax)"><abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF/turtle</abbr></a> syntax plays special role. It used as important part of the query language called <abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr>. It is also main <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> representation in various W3C and similar formal documents.</p>
+<p>As you see <code>ab:</code> was replaced <em>in verbatim</em> with corresponding prefix URI, the same opertaion was done for prefix <code>rdf</code>: all using <code>@prefix</code> directives found at the begining of turtle file.</p>
+<p>turtle rules prescribe to enclose URIs inside of angle brackets to designate the string between brackets as URI. The angle brackets themselves are not part of URI. E.g. first line <em>predicate</em> is URI <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</code>.</p>
+<p>In the second line of the example you've seen that <em>object</em> could also be [R<span/>DF Literal]. In RDF/turtle the string l<span>iterals are in double-quotes to distibguish them from URIs. E.g. the third statement <em>object</em> is string <em>Alice</em>.</p>
+<p>There are other ways to represent RDF triples: e.g. <a href="https://en.wikipedia.org/wiki/RDF/XML">R<span/>DF/XML</a>. However <a href="https://en.wikipedia.org/wiki/Turtle_(syntax)">RDF/turtle</a> syntax plays special role. It used as important part of the query language called SPARQL. It is also main RDF representation in various W3C and similar formal documents.</p>
 <p>So from this point:</p>
 <ul>
-<li>any mention of <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">R<span/>DF</a> would assume <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF/turtle</abbr> unless stated otherwise.</li>
-<li>any <abbr title="https://www.w3.org/TR/rdf12-turtle/#literals">literal</abbr> is <a href="https://www.w3.org/TR/rdf12-turtle/#literals">R<span/>DF Literal</a> as defined by <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF/turtle</abbr> document.</li>
+<li>any mention of [R<span/>DF] would assume RDF/turtle unless stated otherwise.</li>
+<li>any literal is [R<span/>DF Literal] as defined by RDF/turtle document.</li>
 </ul>
-<p>One more important wide-spread assumption is introduction of small list of well-known prefixes. It leads to situation when <abbr title="https://www.w3.org/TR/2010/NOTE-curie-20101216/">CURIEs</abbr> are often called <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URIs</abbr> assuming it is always possible to apply prefix expansion. Such expansion will be based on either well-known prefixes (often omit in the documents) or locally defined prefixes for particular <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> file or <abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> query.</p>
+<p>One more important wide-spread assumption is introduction of small list of well-known prefixes. It leads to situation when CURIEs are often called URIs assuming it is always possible to apply prefix expansion. Such expansion will be based on either well-known prefixes (often omit in the documents) or locally defined prefixes for particular RDF file or SPARQL query.</p>
 <p>Most well-known prefixes are:
 <div class="highlight"><pre><span></span><code>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
@@ -464,9 +464,9 @@ It is the data fragment from <a href="../examples/alice-bob/ab.data.ttl">ab.data
 </code></pre></div></p>
 <p>The same list is also given in addendum section <a href="/KGM-docs/addendum/#well-known-prefixes">Well-known prefixes</a>.
 You can also lookup prefixes at <a href="https://prefix.cc">https://prefix.cc</a>. E.g. Friend-Of-A-Friend prefix link <a href="https://prefix.cc/foaf">foaf:</a> will give you details of prefix and related defitions.</p>
-<h2 id="rdf-triples"><abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triples</abbr></h2>
-<p>Each <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triple</abbr> has three parts: <em>subject</em>, <em>predicate</em> and <em>object</em>.</p>
-<p>You may think about <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triples</abbr> as extention of an idea of key-value pairs. We add <em>predicate</em> as the way to select particular KV mapping.</p>
+<h2 id="rdf-triples">RDF triples</h2>
+<p>Each RDF triple has three parts: <em>subject</em>, <em>predicate</em> and <em>object</em>.</p>
+<p>You may think about RDF triples as extention of an idea of key-value pairs. We add <em>predicate</em> as the way to select particular KV mapping.</p>
 <p>E.g. you may have such KV pairs stored in two separate file to capture the facts from first Alice-Bob example:</p>
 <hr/>
 <div style="float: left; width: 50%;">
@@ -482,24 +482,24 @@ bob: Bob<br/></p>
 <div style="clear: both"></div>
 <hr/>
 
-<p><abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> makes two changes to key-value pairs idea:</p>
+<p>RDF makes two changes to key-value pairs idea:</p>
 <ul>
-<li>as illustrated above <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> adds third element to the statement line so you now will have subject-predicate-object triples instead of key-value pairs.</li>
-<li><abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> restricts what exactly could be <em>subject</em>, <em>predicate</em> or <em>object</em> and how exactly they represented. In most cases the parts of <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triple</abbr> can be either <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URIs</abbr> or <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> <abbr title="https://www.w3.org/TR/rdf12-turtle/#literals">literals</abbr>.</li>
+<li>as illustrated above RDF adds third element to the statement line so you now will have subject-predicate-object triples instead of key-value pairs.</li>
+<li>RDF restricts what exactly could be <em>subject</em>, <em>predicate</em> or <em>object</em> and how exactly they represented. In most cases the parts of RDF triple can be either URIs or RDF literals.</li>
 </ul>
 <h2 id="knowledge-graph">Knowledge Graph</h2>
-<p>Set of <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triples</abbr> can be thought of as <a href="https://en.wikipedia.org/wiki/Knowledge_graph">Knowledge Graph</a> like this one below:</p>
+<p>Set of RDF triples can be thought of as <a href="https://en.wikipedia.org/wiki/Knowledge_graph">Knowledge Graph</a> like this one below:</p>
 <p><a href="../examples/alice-bob/ab.data.ttl.png"><img alt="image" src="../examples/alice-bob/ab.data.ttl.png" /></a></p>
-<p>This is graph view on data from <a href="../examples/alice-bob/ab.data.ttl">ab.data.ttl</a> file. In plain english the KG tells us about Alice and Bob:</p>
+<p>This is graph view on data from [ab.data.ttl] file. In plain english the KG tells us about Alice and Bob:</p>
 <ul>
 <li>they are friends.</li>
 <li>Alice lives in the location <code>ab:worcester</code> which is clearly <a href="https://en.wikipedia.org/wiki/Worcester,_Massachusetts">Worcester, MA</a> based on provided county name and country code.</li>
-<li>Bob lives in <code>ab:boston</code>. Unlike intiution based on <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</abbr> <code>ab:boston</code> Bob does not live in the capital of Commonwealth of Massachusetts. <code>ab:boston</code> is clearly <a href="https://en.wikipedia.org/wiki/Boston,_Lincolnshire">Boston, Lincolnshire</a> in United Kingdom based on provided data.</li>
+<li>Bob lives in <code>ab:boston</code>. Unlike intiution based on URI <code>ab:boston</code> Bob does not live in the capital of Commonwealth of Massachusetts. <code>ab:boston</code> is clearly <a href="https://en.wikipedia.org/wiki/Boston,_Lincolnshire">Boston, Lincolnshire</a> in United Kingdom based on provided data.</li>
 <li>both Alice and Bob owns pets: dog Amy and cat Luna.</li>
 <li>there is one more person on diagram: <code>ab:charlie</code>. Charlie lives in the same place as Alice.</li>
 </ul>
-<h2 id="sparql"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></h2>
-<p><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> is the programming language to query and manipulate <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> knowledge graphs. The example of <abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> select query and result using Alice-Bob dataset is below:
+<h2 id="sparql">SPARQL</h2>
+<p>SPARQL is the programming language to query and manipulate RDF knowledge graphs. The example of SPARQL select query and result using Alice-Bob dataset is below:
 <div class="highlight"><pre><span></span><code>prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
 prefix ab: &lt;ab:&gt;
 
@@ -512,7 +512,7 @@ where {
 }
 </code></pre></div>
 <a href="../examples/alice-bob/adhoc-ab-rq-result.png"><img alt="image" src="../examples/alice-bob/adhoc-ab-rq-result.png" /></a></p>
-<p>The idea of <abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> is based on <strong>variables binding</strong>. When the query is executed, the <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triples</abbr> are searched for triples that match the patterns in the WHERE clause. For each match, the values are bound to the variables specified in the patterns. The SELECT clause then determines which of these variables are included in the result set.</p>
+<p>The idea of SPARQL is based on <strong>variables binding</strong>. When the query is executed, the RDF triples are searched for triples that match the patterns in the WHERE clause. For each match, the values are bound to the variables specified in the patterns. The SELECT clause then determines which of these variables are included in the result set.</p>
 <p>If you want to experiment with this simple query you can install python package rdflib and use python script below:</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">short</label><label for="__tabbed_1_2">long</label></div>
 <div class="tabbed-content">
@@ -584,9 +584,9 @@ where {
 [&#39;Luna&#39;, &#39;Bob&#39;, &#39;ab:Cat&#39;]
 </code></pre></div></p>
 <p>Besides locally installed python with rdflib you can use <a href="https://atomgraph.github.io/SPARQL-Playground/">S<span/>PARQL playground</a> for more experimentation with Alice-Bob data.</p>
-<h2 id="shacl"><abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr></h2>
-<p><abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> is W3C standard. <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> was designed as the mean to describe <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> knowledge graphs structure. It can be thought as graph database analog of 'database schema'.</p>
-<p><abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> specify constraint to graph dabase nodes. Graph below presents <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> defitions from <a href="../examples/alice-bob/ab.shacl.ttl">ab.shacl.ttl</a> file.</p>
+<h2 id="shacl">SHACL</h2>
+<p>SHACL is W3C standard. SHACL was designed as the mean to describe RDF knowledge graphs structure. It can be thought as graph database analog of 'database schema'.</p>
+<p>SHACL specify constraint to graph dabase nodes. Graph below presents SHACL defitions from [ab.shacl.ttl] file.</p>
 <p><a href="../examples/alice-bob/ab.shacl.ttl.png"><img alt="image" src="../examples/alice-bob/ab.shacl.ttl.png" /></a></p>
 <p><a href="https://shacl.org/playground/">S<span/>HACL playground</a></p>
 <hr>

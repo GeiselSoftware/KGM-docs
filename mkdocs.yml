@@ -1,5 +1,7 @@
 site_name: KGM docs
 site_url: https://geiselsoftware.github.io/KGM-docs/
+docs_dir: source-docs
+
 theme:
   name: material
   features:
