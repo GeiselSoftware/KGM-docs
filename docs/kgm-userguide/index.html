@@ -524,20 +524,23 @@ $ pip install py-packages/kgm
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="northwind">NorthWind</h3>
-<p><a href="https://en.wikiversity.org/wiki/Database_Examples/Northwind">NorthWind</a> is sample SQL database we will convert to <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> and then load into <abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr>-controlled Fuseki server.</p>
-<p>Commands below assume that your current working directory is <code>docs/examples/northwind</code></p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span><span class="nb">pwd</span>
-<span class="go">docs/examples/northwind</span>
-
-<span class="gp">$ </span>sqlite3<span class="w"> </span>northwind.sqlitedb<span class="w"> </span>&lt;<span class="w"> </span>./northwind-sqlite.sql
+<p><a href="https://en.wikiversity.org/wiki/Database_Examples/Northwind">NorthWind</a> is sample SQL database. We will convert to <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> and then load into <abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr>-controlled Fuseki server.</p>
+<p>data file locations:</p>
+<ul>
+<li><a href="../examples/northwind/northwind-sqlite.sql">northwind-sqlite.sql</a> -- Northwind data as SQL inserts</li>
+<li><a href="../examples/northwind/northwind.shacl.ttl">northwind.shacl.ttl</a> -- <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> schema of Northwind</li>
+</ul>
+<p>The script <a href="../examples/northwind/build-rdf.py">build-rdf.py</a> uses <abbr title="https://rdflib.readthedocs.io/en/stable/">rdflib</abbr> python package.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget<span class="w"> </span>https://geiselsoftware.github.io/KGM-docs/examples/northwind/nortwind-sqlite.sql
+<span class="gp">$ </span>wget<span class="w"> </span>https://geiselsoftware.github.io/KGM-docs/examples/northwind/northwind.shacl.ttl
+<span class="gp">$ </span>wget<span class="w"> </span>https://geiselsoftware.github.io/KGM-docs/examples/northwind/build-rdf.py
+<span class="gp">$ </span>sqlite3<span class="w"> </span>northwind.sqlitedb<span class="w"> </span>&lt;<span class="w"> </span>northwind-sqlite.sql
 <span class="gp">$ </span>python<span class="w"> </span>build-rdf.py<span class="w"> </span>&gt;<span class="w"> </span>northwind.data.ttl
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>kgm<span class="w"> </span>graph<span class="w"> </span>add<span class="w"> </span>/NorthWind<span class="w"> </span>./northwind.data.ttl<span class="w"> </span>
-<span class="gp">$ </span>kgm<span class="w"> </span>graph<span class="w"> </span>add<span class="w"> </span>--kgm-graph-type<span class="o">=</span>shacl<span class="w"> </span>/NorthWind.shacl<span class="w"> </span>./northwind.shacl.ttl
-
-<span class="gp">$ </span>kgm<span class="w"> </span>graph<span class="w"> </span>replace<span class="w"> </span>/NorthWind<span class="w"> </span>./northwind.data.ttl
-<span class="gp">$ </span>kgm<span class="w"> </span>graph<span class="w"> </span>replace<span class="w"> </span>/NorthWind.shacl<span class="w"> </span>./northwind.shacl.ttl
-
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>kgm<span class="w"> </span>new<span class="w"> </span>-t<span class="w"> </span>data<span class="w"> </span>/NorthWind
+<span class="gp">$ </span>kgm<span class="w"> </span>new<span class="w"> </span>-t<span class="w"> </span>shacl<span class="w"> </span>/NorthWind.shacl
+<span class="gp">$ </span>kgm<span class="w"> </span>download<span class="w"> </span>/NorthWind<span class="w"> </span>northwind.data.ttl
+<span class="gp">$ </span>kgm<span class="w"> </span>download<span class="w"> </span>/NorthWind.shacl<span class="w"> </span>northwind.shacl.ttl
 <span class="gp">$ </span>kgm<span class="w"> </span>validate<span class="w"> </span>/NorthWind.shacl<span class="w"> </span>/NorthWind
 </code></pre></div>
 <p>Query examples:

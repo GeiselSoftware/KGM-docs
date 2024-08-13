@@ -12,9 +12,13 @@
 *[literal]: https://www.w3.org/TR/rdf12-turtle/#literals
 *[literals]: https://www.w3.org/TR/rdf12-turtle/#literals
 *[KGM]: https://geiselsoftware.github.io/KGM-docs/
+*[rdflib]: https://rdflib.readthedocs.io/en/stable/
 
 [R<span/>DF]: https://en.wikipedia.org/wiki/Resource_Description_Framework
 [R<span/>DF Literal]: https://www.w3.org/TR/rdf12-turtle/#literals
 
 [ab.data.ttl]: examples/alice-bob/ab.data.ttl
 [ab.shacl.ttl]: examples/alice-bob/ab.shacl.ttl
+
+[northwind-sqlite.sql]: examples/northwind/northwind-sqlite.sql
+[northwind.shacl.ttl]: examples/northwind/northwind.shacl.ttl

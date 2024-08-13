@@ -98,26 +98,28 @@ where {
 
 ### NorthWind
 
-[NorthWind](https://en.wikiversity.org/wiki/Database_Examples/Northwind) is sample SQL database we will convert to RDF and then load into KGM-controlled Fuseki server.
+[NorthWind](https://en.wikiversity.org/wiki/Database_Examples/Northwind) is sample SQL database. We will convert to RDF and then load into KGM-controlled Fuseki server.
 
-Commands below assume that your current working directory is `docs/examples/northwind`
+data file locations:
+
+- [northwind-sqlite.sql] -- Northwind data as SQL inserts
+- [northwind.shacl.ttl] -- SHACL schema of Northwind
+
+The script [build-rdf.py](examples/northwind/build-rdf.py) uses rdflib python package.
 
 ```console
-
-$ pwd
-docs/examples/northwind
-
-$ sqlite3 northwind.sqlitedb < ./northwind-sqlite.sql
+$ wget https://geiselsoftware.github.io/KGM-docs/examples/northwind/nortwind-sqlite.sql
+$ wget https://geiselsoftware.github.io/KGM-docs/examples/northwind/northwind.shacl.ttl
+$ wget https://geiselsoftware.github.io/KGM-docs/examples/northwind/build-rdf.py
+$ sqlite3 northwind.sqlitedb < northwind-sqlite.sql
 $ python build-rdf.py > northwind.data.ttl
 ```
 
 ```console
-$ kgm graph add /NorthWind ./northwind.data.ttl 
-$ kgm graph add --kgm-graph-type=shacl /NorthWind.shacl ./northwind.shacl.ttl
-
-$ kgm graph replace /NorthWind ./northwind.data.ttl
-$ kgm graph replace /NorthWind.shacl ./northwind.shacl.ttl
-
+$ kgm new -t data /NorthWind
+$ kgm new -t shacl /NorthWind.shacl
+$ kgm download /NorthWind northwind.data.ttl
+$ kgm download /NorthWind.shacl northwind.shacl.ttl
 $ kgm validate /NorthWind.shacl /NorthWind
 ```
 

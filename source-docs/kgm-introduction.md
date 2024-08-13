@@ -128,7 +128,7 @@ where {
 
 The idea of SPARQL is based on **variables binding**. When the query is executed, the RDF triples are searched for triples that match the patterns in the WHERE clause. For each match, the values are bound to the variables specified in the patterns. The SELECT clause then determines which of these variables are included in the result set.
 
-If you want to experiment with this simple query you can install python package rdflib and use python script below:
+If you want to experiment with this simple query you can install python package rdflib and use python scripts below. The scripts direct links: [r<span/>dflib-sparql-short.py](examples/rdflib/rdflib-sparql-short.py) and [r<span/>dflib-sparql.py](examples/rdflib/rdflib-sparql.py).
 
 === "short"
 
@@ -142,8 +142,6 @@ If you want to experiment with this simple query you can install python package 
     {% include 'examples/rdflib/rdflib-sparql.py' %}
     ```
     
-The script are available via [rdflib-sparql-short.py](examples/rdflib/rdflib-sparql-short.py) and [rdflib-sparql.py](examples/rdflib/rdflib-sparql.py) links.
-
 Expected result:
 ```
 ['Amy', 'Alice', 'ab:Dog']
