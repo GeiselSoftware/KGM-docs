@@ -18,6 +18,7 @@ github pages shoud pick up newly generated and commit docs files from /docs loca
 python3 -m venv ~/venv/kgm-docs
 source ~/venv/kgm-docs
 mkdocs build -d docs
+git add .
 git commit -m 'new docs are coming' .
 git push
 ```
