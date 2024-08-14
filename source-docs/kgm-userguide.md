@@ -98,7 +98,8 @@ where {
 
 ### NorthWind
 
-[NorthWind](https://en.wikiversity.org/wiki/Database_Examples/Northwind) is sample SQL database. We will convert to RDF and then load into KGM-controlled Fuseki server.
+[NorthWind](https://en.wikiversity.org/wiki/Database_Examples/Northwind) is sample SQL database. We will convert to RDF and then load into KGM-controlled Fuseki server. See also [Neo4J northwind example at github](https://github.com/neo4j-graph-examples/northwind/tree/main)
+
 
 data file locations:
 
