@@ -421,7 +421,7 @@
 <h1 id="knowlege-graph-for-practical-software-engeneering">Knowlege Graph for Practical Software Engeneering</h1>
 <h2 id="preface">Preface</h2>
 <p>Knowledge Graph and related technologies were introduced by practitioners in the area of <a href="https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning">knowledge representation</a>. Historically KG technologies were used by data analysts and designers with purpose to build various ontologies and taxonomies to cover very wide areas of business and science. <a href="https://www.wikidata.org/wiki/Wikidata:Main_Page">Wikidata</a> could be considered as famous example of such efforts - the project provides <a href="https://www.wikidata.org/wiki/Wikidata:Request_a_query#Help_with_a_query"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> interface</a> to allow queries using wikipedia data.</p>
-<p>This document purpose is to provide practical alternative to the mainstream KG tutorials. After minimalistic introduction we are going to concentrate on few examples of purely technical utilization of <strong>available</strong> KG tech tools. In most cases it will be possible to easily reproduce this document scripts and queries using only python's <a href="https://pypi.org/project/rdflib/">rdflib</a> and <a href="https://pypi.org/project/graphviz/">graphviz</a> packages - i.e. no DB server install would be necessary.</p>
+<p>This document purpose is to provide practical alternative to the mainstream KG tutorials. After minimalistic introduction we are going to concentrate on few examples of purely technical utilization of <strong>available</strong> KG tech tools. In most cases it will be possible to easily reproduce this document scripts and queries using only python's <a href="https://pypi.org/project/rdflib/"><abbr title="https://rdflib.readthedocs.io/en/stable/">rdflib</abbr></a> and <a href="https://pypi.org/project/graphviz/">graphviz</a> packages - i.e. no DB server install would be necessary.</p>
 <h2 id="rdf-and-rdfturtle"><a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">R<span/>DF</a> and <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF/turtle</abbr></h2>
 <p><u>Resource Definition Framework</u> (<a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">R<span/>DF</a>) is standartized way to store the facts in the form of <a href="https://www.w3.org/TR/rdf11-primer/#section-triple">R<span/>DF statements</a>. Each such statement has three parts: <em>subject</em>, <em>predicate</em> and <em>object</em>. The example of few such statements using <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF/turtle</abbr> format is given below:</p>
 <p><div class="highlight"><pre><span></span><code>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
@@ -513,7 +513,7 @@ where {
 </code></pre></div>
 <a href="../examples/alice-bob/adhoc-ab-rq-result.png"><img alt="image" src="../examples/alice-bob/adhoc-ab-rq-result.png" /></a></p>
 <p>The idea of <abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> is based on <strong>variables binding</strong>. When the query is executed, the <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triples</abbr> are searched for triples that match the patterns in the WHERE clause. For each match, the values are bound to the variables specified in the patterns. The SELECT clause then determines which of these variables are included in the result set.</p>
-<p>If you want to experiment with this simple query you can install python package rdflib and use python script below:</p>
+<p>If you want to experiment with this simple query you can install python package <abbr title="https://rdflib.readthedocs.io/en/stable/">rdflib</abbr> and use python scripts below. The scripts direct links: <a href="../examples/rdflib/rdflib-sparql-short.py">r<span/>dflib-sparql-short.py</a> and <a href="../examples/rdflib/rdflib-sparql.py">r<span/>dflib-sparql.py</a>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">short</label><label for="__tabbed_1_2">long</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
@@ -578,12 +578,11 @@ where {
 </div>
 </div>
 </div>
-<p>The script are available via <a href="../examples/rdflib/rdflib-sparql-short.py">rdflib-sparql-short.py</a> and <a href="../examples/rdflib/rdflib-sparql.py">rdflib-sparql.py</a> links.</p>
 <p>Expected result:
 <div class="highlight"><pre><span></span><code>[&#39;Amy&#39;, &#39;Alice&#39;, &#39;ab:Dog&#39;]
 [&#39;Luna&#39;, &#39;Bob&#39;, &#39;ab:Cat&#39;]
 </code></pre></div></p>
-<p>Besides locally installed python with rdflib you can use <a href="https://atomgraph.github.io/SPARQL-Playground/">S<span/>PARQL playground</a> for more experimentation with Alice-Bob data.</p>
+<p>Besides locally installed python with <abbr title="https://rdflib.readthedocs.io/en/stable/">rdflib</abbr> you can use <a href="https://atomgraph.github.io/SPARQL-Playground/">S<span/>PARQL playground</a> for more experimentation with Alice-Bob data.</p>
 <h2 id="shacl"><abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr></h2>
 <p><abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> is W3C standard. <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> was designed as the mean to describe <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> knowledge graphs structure. It can be thought as graph database analog of 'database schema'.</p>
 <p><abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> specify constraint to graph dabase nodes. Graph below presents <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> defitions from <a href="../examples/alice-bob/ab.shacl.ttl">ab.shacl.ttl</a> file.</p>
