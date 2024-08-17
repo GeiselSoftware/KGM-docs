@@ -28,12 +28,12 @@ $ kgm ls
 1  "/alice-bob.shacl"  kgm:SHACLGraph--40c4faaf-f311-4112-bfec-a945b4...
 ```
 
-One of the way to populate KG is to dowload .ttl file using `kgm download` command:
+One of the way to populate KG is to dowload .ttl file using `kgm import` command:
 ```console
-$ kgm download /alice-bob.shacl http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.shacl.ttl
+$ kgm import /alice-bob.shacl http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.shacl.ttl
 /alice-bob.shacl http://www.geisel-software.com/RDF/KGM#SHACLGraph--40c4faaf-f311-4112-bfec-a945b4f7cdbb
 
-$ kgm download /alice-bob http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.data.ttl
+$ kgm import /alice-bob http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.data.ttl
 /alice-bob http://www.geisel-software.com/RDF/KGM#DataGraph--5f90e074-5582-4ba6-bcf5-67dc55ed4754
 
 $ kgm ls
@@ -119,8 +119,8 @@ $ python build-rdf.py > northwind.data.ttl
 ```console
 $ kgm new -t data /NorthWind
 $ kgm new -t shacl /NorthWind.shacl
-$ kgm download /NorthWind northwind.data.ttl
-$ kgm download /NorthWind.shacl northwind.shacl.ttl
+$ kgm import /NorthWind northwind.data.ttl
+$ kgm import /NorthWind.shacl northwind.shacl.ttl
 $ kgm validate /NorthWind.shacl /NorthWind
 ```
 
