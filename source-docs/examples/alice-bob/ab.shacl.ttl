@@ -9,7 +9,7 @@
 ab:Human rdf:type rdfs:Class; rdf:type sh:NodeShape;
          sh:property [sh:path ab:name;
 	 	      sh:minCount 1; sh:maxCount 1;
-		      sh:dataclass xsd:string];
+		      sh:datatype xsd:string];
        	 sh:property [sh:path ab:friendOf;
 	 	      sh:minCount 0;
 		      sh:class ab:Human];
@@ -20,7 +20,7 @@ ab:Human rdf:type rdfs:Class; rdf:type sh:NodeShape;
 ab:Dog rdf:type rdfs:Class; rdf:type sh:NodeShape;
        sh:property [sh:path ab:name;
        		    sh:minCount 1; sh:maxCount 1;
-		    sh:dataclass xsd:string];
+		    sh:datatype xsd:string];
        sh:property [sh:path ab:ownedBy;
        		    sh:minCount 1; sh:maxCount 1;
 		    sh:class ab:Human] .
@@ -28,7 +28,7 @@ ab:Dog rdf:type rdfs:Class; rdf:type sh:NodeShape;
 ab:Cat rdf:type rdfs:Class; rdf:type sh:NodeShape;
        sh:property [sh:path ab:name;
        		    sh:minCount 1; sh:maxCount 1;
-		    sh:dataclass xsd:string];
+		    sh:datatype xsd:string];
        sh:property [sh:path ab:ownedBy;
        		    sh:minCount 1; sh:maxCount 1;
 		    sh:class ab:Human] .
@@ -36,7 +36,7 @@ ab:Cat rdf:type rdfs:Class; rdf:type sh:NodeShape;
 ab:Location rdf:type rdfs:Class; rdf:type sh:NodeShape;
        sh:property [sh:path ab:city-name;
        		    sh:minCount 1; sh:maxCount 1;
-		    sh:dataclass xsd:string];
+		    sh:datatype xsd:string];
        sh:property [sh:path ab:country-code;
        		    sh:minCount 1; sh:maxCount 1;
-		    sh:dataclass xsd:string].
+		    sh:datatype xsd:string].
