@@ -2,20 +2,43 @@
 
 [Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/) is open-source RDF/SPARQL server. The steps below are to have Fuseki server configured and run to be used as shacled KGM backend.
 
+## Setting up FUSEKI_HOME environment variable
+
+Linux
+```
+env FUSEKI_HOME={full path to FUSEKI_HOME directory}
+```
+Windows
+```
+setx FUSEKI_HOME {full path to FUSEKI_HOME directory} /m
+```
+
 ## Install
 
 Fuseki can be downloaded from [Apache Jena Releases](https://jena.apache.org/download/index.cgi)<br/>
-Use binary distribution archive `apache-jena-fuseki-5.0.0.tar.gz` Unpack that to location `FUSEKI_HOME`.
+Use binary distribution archive `apache-jena-fuseki-5.0.0` or newer. Unpack that to location `FUSEKI_HOME`.
 
 ## Default server setup
 
 To quickly setup and run Fuseki server with default KGM configuration:
 
+Linux
 ```
-cd $FUSEKI_HOME/run
+cd $FUSEKI_HOME
+mkdir run
+cd run
 wget https://geiselsoftware.github.io/KGM-docs/backends/fuseki/config-kgm.ttl
 cd $FUSEKI_HOME
 ./fuseki-server --config=run/config-kgm.ttl
+```
+Windows
+```
+cd %FUSEKI_HOME%
+mkdir run
+cd run
+curl -O https://geiselsoftware.github.io/KGM-docs/backends/fuseki/config-kgm.ttl
+cd %FUSEKI_HOME%
+fuseki-server --config=run/config-kgm.ttl
 ```
 
 The default server setup assumes Fuseki server has persistent `kgm-default-dataset` dataset and SHACL endpoint. The configuration file [config-kgm.ttl](/KGM-docs/backends/fuseki/config-kgm.ttl) is placed into Fuseki server run directory and then server is run. The location of TDB2 directory where all K<span/>GM-related data are stored would be `$FUSEKI_HOME/kgm-default-dataset`.
@@ -26,9 +49,15 @@ The default server setup assumes Fuseki server has persistent `kgm-default-datas
 
 To run database server use command:
 
+Linux
 ```
 cd $FUSEKI_HOME
 ./fuseki-server --update --loc=/tmp/test-databases /kgm
+```
+Windows
+```
+cd %FUSEKI_HOME%
+fuseki-server --update --loc=/tmp/test-databases /kgm
 ```
 
 At this point you should be able to access fuseki server via webbrowers at port 3030. You will have single dataset /kgm.
@@ -61,9 +90,15 @@ curl -XPOST --data-binary @./ab.shacl.ttl  --header 'Content-type: text/turtle' 
 
 You can use `$FUSEKI_HOME/run/config.ttl` existing in distribution or create your own. It allows you to configure fuseki server in the way not accessible using command-line options.
 
+Linux
 ```
 cd $FUSEKI_HOME
 ./fuseki-server
+```
+Windows
+```
+cd %FUSEKI_HOME%
+fuseki-server
 ```
 
 The command above uses top run directory `$FUSEKI_HOME/run` and takes default configuration from file `$FUSEKI_HOME/run/config.ttl`. You can try to experiment with config files from [exhaustive list of example configurations](https://github.com/apache/jena/tree/main/jena-fuseki2/examples). You can copy log4j config file from `$FUSEKI/webapp` to that run directory and tune up logging. 
