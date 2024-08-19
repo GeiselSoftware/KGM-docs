@@ -8,30 +8,30 @@
 @prefix ab: <http://www.geisel-software.com/RDF/alice-bob#>.
 
 ab:Human rdf:type rdfs:Class; rdf:type sh:NodeShape;
-       sh:property [sh:path ab:name; sh:minCount 1; sh:maxCount 1; sh:dataclass xsd:string];
+       sh:property [sh:path ab:name; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string];
        sh:property [sh:path ab:friendOf; sh:minCount 0; sh:class ab:Human];
        sh:property [sh:path ab:livesIn; sh:minCount 1; sh:class ab:Location].
 
 ab:Dog rdf:type rdfs:Class; rdf:type sh:NodeShape;
-       sh:property [sh:path ab:name; sh:minCount 1; sh:maxCount 1; sh:dataclass xsd:string];
+       sh:property [sh:path ab:name; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string];
        sh:property [sh:path ab:ownedBy; sh:minCount 1; sh:maxCount 1; sh:class ab:Human] .
 
 ab:Cat rdf:type rdfs:Class; rdf:type sh:NodeShape;
-       sh:property [sh:path ab:name; sh:minCount 1; sh:maxCount 1; sh:dataclass xsd:string];
+       sh:property [sh:path ab:name; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string];
        sh:property [sh:path ab:ownedBy; sh:minCount 1; sh:maxCount 1; sh:class ab:Human] .
 
 ab:MusicGenre rdf:type rdfs:Class; rdf:type sh:NodeShape;
-       sh:property [sh:path ab:name; sh:minCount 1; sh:maxCount 1; sh:dataclass xsd:string];
-       sh:property [sh:path ab:averageLength; sh:minCount 1; sh:maxCount 1; sh:dataclass xsd:number].
+       sh:property [sh:path ab:name; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string];
+       sh:property [sh:path ab:averageLength; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:number].
 
 ab:FamousPainting rdf:type rdfs:Class; rdf:type sh:NodeShape;
-       sh:property [sh:path ab:name; sh:minCount 1; sh:maxCount 1; sh:dataclass xsd:string];
+       sh:property [sh:path ab:name; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string];
        sh:property [sh:path ab:author; sh:minCount 1; sh:maxCount 1; sh:class ab:Human];
        sh:property [sh:path ab:location; sh:minCount 1; sh:maxCount 1; sh:class ab:Location].
 
 ab:Location rdf:type rdfs:Class; rdf:type sh:NodeShape;
-       sh:property [sh:path ab:city; sh:minCount 1; sh:maxCount 1; sh:dataclass xsd:string];
-       sh:property [sh:path ab:country; sh:minCount 1; sh:maxCount 1; sh:dataclass xsd:string].
+       sh:property [sh:path ab:city; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string];
+       sh:property [sh:path ab:country; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string].
 
-ab:Human sh:property [sh:path kgm:node_vis_color; sh:minCount 0; sh:maxCount 1; sh:dataclass xsd:string] .
-ab:Dog sh:property [sh:path kgm:node_vis_color; sh:minCount 0; sh:maxCount 1; sh:dataclass xsd:string] .
+ab:Human sh:property [sh:path kgm:node_vis_color; sh:minCount 0; sh:maxCount 1; sh:datatype xsd:string] .
+ab:Dog sh:property [sh:path kgm:node_vis_color; sh:minCount 0; sh:maxCount 1; sh:datatype xsd:string] .

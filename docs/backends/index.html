@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.32">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
@@ -244,6 +244,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#setting-up-fuseki_home-environment-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up FUSEKI_HOME environment variable
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install" class="md-nav__link">
     <span class="md-ellipsis">
       Install
@@ -367,6 +376,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#setting-up-fuseki_home-environment-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up FUSEKI_HOME environment variable
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install" class="md-nav__link">
     <span class="md-ellipsis">
       Install
@@ -452,23 +470,46 @@
 
 <h1 id="fuseki-setup">Fuseki Setup</h1>
 <p><a href="https://jena.apache.org/documentation/fuseki2/">Apache Jena Fuseki</a> is open-source <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr>/<abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> server. The steps below are to have Fuseki server configured and run to be used as shacled <abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> backend.</p>
+<h2 id="setting-up-fuseki_home-environment-variable">Setting up FUSEKI_HOME environment variable</h2>
+<p>Linux
+<div class="highlight"><pre><span></span><code>env FUSEKI_HOME={full path to FUSEKI_HOME directory}
+</code></pre></div>
+Windows
+<div class="highlight"><pre><span></span><code>setx FUSEKI_HOME {full path to FUSEKI_HOME directory} /m
+</code></pre></div></p>
 <h2 id="install">Install</h2>
 <p>Fuseki can be downloaded from <a href="https://jena.apache.org/download/index.cgi">Apache Jena Releases</a><br/>
-Use binary distribution archive <code>apache-jena-fuseki-5.0.0.tar.gz</code> Unpack that to location <code>FUSEKI_HOME</code>.</p>
+Use binary distribution archive <code>apache-jena-fuseki-5.0.0</code> or newer. Unpack that to location <code>FUSEKI_HOME</code>.</p>
 <h2 id="default-server-setup">Default server setup</h2>
 <p>To quickly setup and run Fuseki server with default <abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> configuration:</p>
-<div class="highlight"><pre><span></span><code>cd $FUSEKI_HOME/run
+<p>Linux
+<div class="highlight"><pre><span></span><code>cd $FUSEKI_HOME
+mkdir run
+cd run
 wget https://geiselsoftware.github.io/KGM-docs/backends/fuseki/config-kgm.ttl
 cd $FUSEKI_HOME
 ./fuseki-server --config=run/config-kgm.ttl
 </code></pre></div>
+Windows
+<div class="highlight"><pre><span></span><code>cd %FUSEKI_HOME%
+mkdir run
+cd run
+curl -O https://geiselsoftware.github.io/KGM-docs/backends/fuseki/config-kgm.ttl
+cd %FUSEKI_HOME%
+fuseki-server --config=run/config-kgm.ttl
+</code></pre></div></p>
 <p>The default server setup assumes Fuseki server has persistent <code>kgm-default-dataset</code> dataset and <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> endpoint. The configuration file <a href="/KGM-docs/backends/fuseki/config-kgm.ttl">config-kgm.ttl</a> is placed into Fuseki server run directory and then server is run. The location of TDB2 directory where all K<span/>GM-related data are stored would be <code>$FUSEKI_HOME/kgm-default-dataset</code>.</p>
 <h2 id="misc">Misc</h2>
 <h3 id="quick-test-run-of-fuseki-server">Quick test run of Fuseki server</h3>
 <p>To run database server use command:</p>
+<p>Linux
 <div class="highlight"><pre><span></span><code>cd $FUSEKI_HOME
 ./fuseki-server --update --loc=/tmp/test-databases /kgm
 </code></pre></div>
+Windows
+<div class="highlight"><pre><span></span><code>cd %FUSEKI_HOME%
+fuseki-server --update --loc=/tmp/test-databases /kgm
+</code></pre></div></p>
 <p>At this point you should be able to access fuseki server via webbrowers at port 3030. You will have single dataset /kgm.
 If you want to observe http requests you need to modify file <code>$FUSEKI_HOME/webapp/log4j2.properties</code>. You need to set property <code>logger.fuseki-request.level</code>:</p>
 <div class="highlight"><pre><span></span><code>logger.fuseki-request.level                  = DEBUG
@@ -487,9 +528,14 @@ curl -XPOST --data-binary @./ab.shacl.ttl  --header &#39;Content-type: text/turt
 </code></pre></div></p>
 <h3 id="tbc-setup-using-configuration-file">TBC - Setup using configuration file.</h3>
 <p>You can use <code>$FUSEKI_HOME/run/config.ttl</code> existing in distribution or create your own. It allows you to configure fuseki server in the way not accessible using command-line options.</p>
+<p>Linux
 <div class="highlight"><pre><span></span><code>cd $FUSEKI_HOME
 ./fuseki-server
 </code></pre></div>
+Windows
+<div class="highlight"><pre><span></span><code>cd %FUSEKI_HOME%
+fuseki-server
+</code></pre></div></p>
 <p>The command above uses top run directory <code>$FUSEKI_HOME/run</code> and takes default configuration from file <code>$FUSEKI_HOME/run/config.ttl</code>. You can try to experiment with config files from <a href="https://github.com/apache/jena/tree/main/jena-fuseki2/examples">exhaustive list of example configurations</a>. You can copy log4j config file from <code>$FUSEKI/webapp</code> to that run directory and tune up logging. </p>
 <h3 id="tbc-test-shacl-endpoint">TBC - Test <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> endpoint</h3>
 <p>Place <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> config file to <code>$FUSEKI_HOME/run</code> and start fuseki:</p>
@@ -553,7 +599,7 @@ See also <a href="https://jena.apache.org/documentation/shacl/index.html#integra
     <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.471ce7a9.min.js"></script>
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
         <script src="../javascripts/custom-abbr.js"></script>
       
