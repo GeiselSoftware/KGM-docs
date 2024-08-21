@@ -9,6 +9,7 @@
 
 nw:Order rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 	  sh:property [sh:path rdf:type; sh:class rdfs:Class; sh:minCount 1];
+	  sh:property [sh:path nw:orderid; sh:datatype xsd:integer; sh:minCount 1; sh:maxCount 1];
 	  sh:property [sh:path nw:customer; sh:class nw:Customer; sh:minCount 1; sh:maxCount 1];
 	  sh:property [sh:path nw:employee; sh:class nw:Employee; sh:minCount 1; sh:maxCount 1];
 	  sh:property [sh:path nw:shipper; sh:class nw:Shipper; sh:minCount 1; sh:maxCount 1];
@@ -17,11 +18,13 @@ nw:Order rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 
 nw:OrderDetail rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 	       sh:property [sh:path rdf:type; sh:class rdfs:Class; sh:minCount 1];
+	       sh:property [sh:path nw:orderdetailid; sh:datatype xsd:integer; sh:minCount 1; sh:maxCount 1];
 	       sh:property [sh:path nw:product; sh:class nw:Product; sh:minCount 1; sh:maxCount 1];
 	       sh:property [sh:path nw:quantity; sh:datatype xsd:string; sh:minCount 1; sh:maxCount 1].
 
 nw:Product rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 	   sh:property [sh:path rdf:type; sh:class rdfs:Class; sh:minCount 1];
+	   sh:property [sh:path nw:productid; sh:datatype xsd:integer; sh:minCount 1; sh:maxCount 1];
 	   sh:property [sh:path nw:productname; sh:datatype xsd:float; sh:minCount 1; sh:maxCount 1];
 	   sh:property [sh:path nw:supplier; sh:class nw:Supplier; sh:minCount 1; sh:maxCount 1];
 	   sh:property [sh:path nw:category; sh:class nw:Category; sh:minCount 1];
@@ -30,6 +33,7 @@ nw:Product rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 
 nw:Supplier rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 	  sh:property [sh:path rdf:type; sh:class rdfs:Class; sh:minCount 1];
+	  sh:property [sh:path nw:supplierid; sh:datatype xsd:integer; sh:minCount 1; sh:maxCount 1];
 	  sh:property [sh:path nw:suppliername; sh:datatype xsd:string; sh:minCount 1; sh:maxCount 1];
 	  sh:property [sh:path nw:contactname; sh:datatype xsd:string; sh:minCount 1; sh:maxCount 1];
 	  sh:property [sh:path nw:address; sh:datatype xsd:string; sh:minCount 1; sh:maxCount 1];
@@ -40,12 +44,14 @@ nw:Supplier rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 	     
 nw:Category rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 	    sh:property [sh:path rdf:type; sh:class rdfs:Class; sh:minCount 1];
+	    sh:property [sh:path nw:categoryid; sh:datatype xsd:integer; sh:minCount 1; sh:maxCount 1];
 	    sh:property [sh:path nw:categoryname; sh:datatype xsd:string; sh:minCount 1; sh:maxCount 1],
 	    		[sh:path nw:description; sh:datatype xsd:string; sh:minCount 1; sh:maxCount 1]
 .
 
 nw:Customer rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 	  sh:property [sh:path rdf:type; sh:class rdfs:Class; sh:minCount 1];
+	  sh:property [sh:path nw:customerid; sh:datatype xsd:integer; sh:minCount 1; sh:maxCount 1];
 	  sh:property [sh:path nw:customername; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string],
 	  	      [sh:path nw:contactname; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string],
 		      [sh:path nw:address; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string],
@@ -56,6 +62,7 @@ nw:Customer rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 	    
 nw:Employee rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 	  sh:property [sh:path rdf:type; sh:class rdfs:Class; sh:minCount 1];
+	  sh:property [sh:path nw:employeeid; sh:datatype xsd:integer; sh:minCount 1; sh:maxCount 1];
 	  sh:property [sh:path nw:lastname; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string],
 	  	      [sh:path nw:firstname; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string],
 		      [sh:path nw:birthdate; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string],
@@ -65,6 +72,7 @@ nw:Employee rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 
 nw:Shipper rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
 	   sh:property [sh:path rdf:type; sh:class rdfs:Class; sh:minCount 1];
+	   sh:property [sh:path nw:shipperid; sh:datatype xsd:integer; sh:minCount 1; sh:maxCount 1];
 	   sh:property [sh:path nw:shippername; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string],
 	   	       [sh:path nw:phone; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:string]
 .
