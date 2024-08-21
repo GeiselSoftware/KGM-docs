@@ -13,3 +13,10 @@ source ~/venv/kgm-docs/bin/activate
 mkdocs serve -a 0.0.0.0:8001
 ```
 
+To publish:
+
+```
+git commit -m '... message ...' .
+git push
+mkdocs gh-deploy --verbose -d docs -b publish
+```
