@@ -1,0 +1,716 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://geiselsoftware.github.io/KGM-docs/kgm-userguide/">
+      
+      
+        <link rel="prev" href="../kgm-introduction/">
+      
+      
+        <link rel="next" href="../backends/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>KGM - User Guide - KGM docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="KGM docs" class="md-header__button md-logo" aria-label="KGM docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            KGM docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              KGM - User Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="KGM docs" class="md-nav__button md-logo" aria-label="KGM docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    KGM docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kgm-introduction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KG for practical software engeneering
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    KGM - User Guide
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    KGM - User Guide
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-pip-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      local pip install
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kgm-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      KGM path
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alice-bob" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alice-Bob
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#northwind" class="md-nav__link">
+    <span class="md-ellipsis">
+      NorthWind
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backends/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backends - Fuseki
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../addendum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Addendum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-pip-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      local pip install
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kgm-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      KGM path
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alice-bob" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alice-Bob
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#northwind" class="md-nav__link">
+    <span class="md-ellipsis">
+      NorthWind
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>KGM - User Guide</h1>
+
+<p><em>kgm</em> is command-line processor utility which allows user to control and manipulate K<span/>GM-controlled graphs in backend graph database.</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<h3 id="local-pip-install">local <code>pip install</code><a class="headerlink" href="#local-pip-install" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>$ python3 -m venv ~/venv/kgm
+$ source ~/venv/kgm/bin/activate
+$ pip install py-packages/kgm
+</code></pre></div>
+<h2 id="kgm-path">K<span/>GM path<a class="headerlink" href="#kgm-path" title="Permanent link">&para;</a></h2>
+<p><abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> provides the way to organize the knowledge graphs in the way similar to files in traditional filesystem. It is always necessary to create KG first to specify <em>kgm type</em> and <em>path</em> using <code>kgm new</code> command:</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>kgm<span class="w"> </span>new<span class="w"> </span>--kgm-graph-type<span class="w"> </span>shacl<span class="w"> </span>/alice-bob.shacl
+<span class="go">created graph at path /alice-bob.shacl: http://www.geisel-software.com/RDF/KGM#SHACLGraph--40c4faaf-f311-4112-bfec-a945b4f7cdbb</span>
+
+<span class="gp">$ </span>kgm<span class="w"> </span>new<span class="w"> </span>--kgm-graph-type<span class="w"> </span>data<span class="w"> </span>/alice-bob
+<span class="go">created graph at path /alice-bob: http://www.geisel-software.com/RDF/KGM#DataGraph--5f90e074-5582-4ba6-bcf5-67dc55ed4754</span>
+
+<span class="gp">$ </span>kgm<span class="w"> </span>ls
+<span class="go">        kgm_path                                                  g</span>
+<span class="go">0        &quot;/alice-bob&quot;  kgm:DataGraph--5f90e074-5582-4ba6-bcf5-67dc55e...</span>
+<span class="go">1  &quot;/alice-bob.shacl&quot;  kgm:SHACLGraph--40c4faaf-f311-4112-bfec-a945b4...</span>
+</code></pre></div>
+<p>One of the way to populate KG is to dowload .ttl file using <code>kgm import</code> command:
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>kgm<span class="w"> </span>import<span class="w"> </span>/alice-bob.shacl<span class="w"> </span>http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.shacl.ttl
+<span class="go">/alice-bob.shacl http://www.geisel-software.com/RDF/KGM#SHACLGraph--40c4faaf-f311-4112-bfec-a945b4f7cdbb</span>
+
+<span class="gp">$ </span>kgm<span class="w"> </span>import<span class="w"> </span>/alice-bob<span class="w"> </span>http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.data.ttl
+<span class="go">/alice-bob http://www.geisel-software.com/RDF/KGM#DataGraph--5f90e074-5582-4ba6-bcf5-67dc55ed4754</span>
+
+<span class="gp">$ </span>kgm<span class="w"> </span>ls
+<span class="go">        kgm_path                                                  g</span>
+<span class="go">0        &quot;/alice-bob&quot;  kgm:DataGraph--5f90e074-5582-4ba6-bcf5-67dc55e...</span>
+<span class="go">1  &quot;/alice-bob.shacl&quot;  kgm:SHACLGraph--40c4faaf-f311-4112-bfec-a945b4...</span>
+</code></pre></div></p>
+<p>To access the KG one can use <abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> console attached to backend database. Using <code>kgm query</code> command it is possible to issue <abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> query:
+<div class="highlight"><pre><span></span><code><span class="go">kgm query -Q &#39;</span>
+<span class="go">prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="go">prefix kgm: &lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
+<span class="go">prefix ab: &lt;http://www.geisel-software.com/RDF/alice-bob#&gt;</span>
+
+<span class="go">select ?human ?h_name</span>
+<span class="go">where {</span>
+<span class="go"> ?g kgm:path &quot;/alice-bob&quot;</span>
+<span class="go"> graph ?g {</span>
+<span class="go">  ?human rdf:type ab:Human .</span>
+<span class="go">  ?human ab:name ?h_name .</span>
+<span class="go"> }</span>
+<span class="go">}</span>
+<span class="go">&#39;</span>
+</code></pre></div></p>
+<p>Output:
+<div class="highlight"><pre><span></span><code><span class="w">        </span>human<span class="w">     </span>h_name
+<span class="m">0</span><span class="w">    </span>ab:alice<span class="w">    </span><span class="s2">&quot;Alice&quot;</span>
+<span class="m">1</span><span class="w">      </span>ab:bob<span class="w">      </span><span class="s2">&quot;Bob&quot;</span>
+<span class="m">2</span><span class="w">  </span>ab:charlie<span class="w">  </span><span class="s2">&quot;Charlie&quot;</span>
+</code></pre></div></p>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
+<h3 id="alice-bob">Alice-Bob<a class="headerlink" href="#alice-bob" title="Permanent link">&para;</a></h3>
+<p>data files location:</p>
+<ul>
+<li><a href="../examples/alice-bob/ab.data.ttl">ab.data.ttl</a> -- data <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triples</abbr></li>
+<li><a href="../examples/alice-bob/ab.shacl.ttl">ab.shacl.ttl</a> -- <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> structure</li>
+</ul>
+<p>Alice-Bob queries:</p>
+<div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
+<span class="k">prefix</span> <span class="nn">ab</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/alice-bob#&gt;</span>
+
+<span class="k">select</span> <span class="nv">?owner_name</span> <span class="nv">?pet_name</span> <span class="nv">?pet_class</span>
+<span class="k">where</span> <span class="p">{</span>
+  <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/alice-bob&quot;</span>
+  <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+      <span class="nv">?pet</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nv">?pet_class</span><span class="p">;</span>
+           <span class="nn">ab</span><span class="p">:</span><span class="nt">name</span> <span class="nv">?pet_name</span><span class="p">;</span>
+           <span class="nn">ab</span><span class="p">:</span><span class="nt">ownedBy</span> <span class="nv">?owner</span><span class="p">;</span>
+      <span class="p">.</span>
+      <span class="nv">?owner</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">name</span> <span class="nv">?owner_name</span> <span class="p">.</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="northwind">NorthWind<a class="headerlink" href="#northwind" title="Permanent link">&para;</a></h3>
+<p><a href="https://en.wikiversity.org/wiki/Database_Examples/Northwind">NorthWind</a> is sample SQL database. We will convert to <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> and then load into <abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr>-controlled Fuseki server. See also <a href="https://github.com/neo4j-graph-examples/northwind/tree/main">Neo4J northwind example at github</a></p>
+<p>data file locations:</p>
+<ul>
+<li><a href="../examples/northwind/northwind-sqlite.sql">northwind-sqlite.sql</a> -- Northwind data as SQL inserts</li>
+<li><a href="../examples/northwind/northwind.shacl.ttl">northwind.shacl.ttl</a> -- <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> schema of Northwind</li>
+</ul>
+<p>The script <a href="../examples/northwind/build-rdf.py">build-rdf.py</a> uses <abbr title="https://rdflib.readthedocs.io/en/stable/">rdflib</abbr> python package.</p>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget<span class="w"> </span>https://geiselsoftware.github.io/KGM-docs/examples/northwind/nortwind-sqlite.sql
+<span class="gp">$ </span>wget<span class="w"> </span>https://geiselsoftware.github.io/KGM-docs/examples/northwind/northwind.shacl.ttl
+<span class="gp">$ </span>wget<span class="w"> </span>https://geiselsoftware.github.io/KGM-docs/examples/northwind/build-rdf.py
+<span class="gp">$ </span>sqlite3<span class="w"> </span>northwind.sqlitedb<span class="w"> </span>&lt;<span class="w"> </span>northwind-sqlite.sql
+<span class="gp">$ </span>python<span class="w"> </span>build-rdf.py<span class="w"> </span>&gt;<span class="w"> </span>northwind.data.ttl
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>kgm<span class="w"> </span>new<span class="w"> </span>-t<span class="w"> </span>data<span class="w"> </span>/NorthWind
+<span class="gp">$ </span>kgm<span class="w"> </span>new<span class="w"> </span>-t<span class="w"> </span>shacl<span class="w"> </span>/NorthWind.shacl
+<span class="gp">$ </span>kgm<span class="w"> </span>import<span class="w"> </span>/NorthWind<span class="w"> </span>northwind.data.ttl
+<span class="gp">$ </span>kgm<span class="w"> </span>import<span class="w"> </span>/NorthWind.shacl<span class="w"> </span>northwind.shacl.ttl
+<span class="gp">$ </span>kgm<span class="w"> </span>validate<span class="w"> </span>/NorthWind.shacl<span class="w"> </span>/NorthWind
+</code></pre></div>
+<h4 id="query-examples">Query examples<a class="headerlink" href="#query-examples" title="Permanent link">&para;</a></h4>
+<h5 id="counts">Counts<a class="headerlink" href="#counts" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
+<span class="k">prefix</span> <span class="nn">nw</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/NorthWind#&gt;</span>
+
+<span class="k">select</span> <span class="nv">?order</span> <span class="p">(</span><span class="nf">count</span><span class="p">(</span><span class="nv">?od</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?c</span><span class="p">)</span>
+<span class="k">where</span> <span class="p">{</span>
+  <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/NorthWind&quot;</span> <span class="p">.</span>
+  <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+    <span class="nv">?order</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">Order</span><span class="p">;</span>
+           <span class="nn">nw</span><span class="p">:</span><span class="nt">order_detail</span> <span class="nv">?od</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">group by</span> <span class="nv">?order</span>
+<span class="k">order by</span> <span class="k">desc</span><span class="p">(</span><span class="nv">?c</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
+<span class="k">prefix</span> <span class="nn">nw</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/NorthWind#&gt;</span>
+
+<span class="k">select</span> <span class="nv">?c</span> <span class="p">(</span><span class="nf">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?cc</span><span class="p">)</span> <span class="p">{</span>
+ <span class="k">select</span> <span class="nv">?order</span> <span class="p">(</span><span class="nf">count</span><span class="p">(</span><span class="nv">?od</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?c</span><span class="p">)</span>
+ <span class="k">where</span> <span class="p">{</span>
+  <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/NorthWind&quot;</span> <span class="p">.</span>
+  <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+   <span class="nv">?order</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">Order</span><span class="p">;</span>
+          <span class="nn">nw</span><span class="p">:</span><span class="nt">order_detail</span> <span class="nv">?od</span>
+  <span class="p">}</span>
+ <span class="p">}</span>
+ <span class="k">group by</span> <span class="nv">?order</span>
+ <span class="c"># order by desc(?c)</span>
+<span class="p">}</span>
+<span class="k">group by</span> <span class="nv">?c</span>
+</code></pre></div>
+<h5 id="get-all-products-and-their-suppliers">Get all products and their suppliers<a class="headerlink" href="#get-all-products-and-their-suppliers" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
+<span class="k">prefix</span> <span class="nn">nw</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/NorthWind#&gt;</span>
+
+<span class="k">select</span> <span class="nv">?pn</span> <span class="nv">?suppl_n</span>
+<span class="k">where</span> <span class="p">{</span>
+ <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/NorthWind&quot;</span> <span class="p">.</span>
+ <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+  <span class="nv">?p</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">Product</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">supplier</span> <span class="nv">?suppl</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">productname</span> <span class="nv">?pn</span><span class="p">.</span>
+  <span class="nv">?suppl</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">suppliername</span> <span class="nv">?suppl_n</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">.</span><span class="n">SupplierName</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">Suppliers</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">SupplierID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">.</span><span class="n">SupplierID</span><span class="p">;</span>
+</code></pre></div>
+<h5 id="list-all-orders-with-customer-and-employee-information">List all orders with customer and employee information<a class="headerlink" href="#list-all-orders-with-customer-and-employee-information" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="nv">?orderid</span> <span class="nv">?company_name</span> <span class="nv">?employee_lastname</span> <span class="nv">?orderdate</span>
+<span class="k">where</span> <span class="p">{</span>
+  <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/NorthWind&quot;</span> <span class="p">.</span>
+  <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+    <span class="nv">?customer</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">Customer</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">customername</span> <span class="nv">?company_name</span><span class="p">.</span>
+    <span class="nv">?order</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">customer</span> <span class="nv">?customer</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">orderdate</span> <span class="nv">?orderdate</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">orderid</span> <span class="nv">?orderid</span><span class="p">.</span>
+    <span class="nv">?order</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">employee</span> <span class="nv">?employee</span><span class="p">.</span>
+    <span class="nv">?employee</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">lastname</span> <span class="nv">?employee_lastname</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CompanyName</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Customer</span><span class="p">,</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">LastName</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderDate</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Employees</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">EmployeeID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">EmployeeID</span><span class="p">;</span>
+</code></pre></div>
+<h5 id="find-the-total-number-of-orders-placed-by-each-customer">Find the total number of orders placed by each customer<a class="headerlink" href="#find-the-total-number-of-orders-placed-by-each-customer" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CompanyName</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalOrders</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CompanyName</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">TotalOrders</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<h5 id="list-products-that-have-never-been-ordered">List products that have never been ordered<a class="headerlink" href="#list-products-that-have-never-been-ordered" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">ProductName</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ProductID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">ProductID</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">[</span><span class="k">Order</span><span class="w"> </span><span class="n">Details</span><span class="p">]);</span>
+</code></pre></div>
+<h5 id="get-the-top-5-customers-with-the-highest-number-of-orders">Get the top 5 customers with the highest number of orders<a class="headerlink" href="#get-the-top-5-customers-with-the-highest-number-of-orders" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CompanyName</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OrderCount</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CompanyName</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">OrderCount</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div>
+<h5 id="find-the-employee-who-has-processed-the-most-orders">Find the employee who has processed the most orders<a class="headerlink" href="#find-the-employee-who-has-processed-the-most-orders" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">LastName</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OrdersProcessed</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">EmployeeID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">EmployeeID</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">LastName</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">OrdersProcessed</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+<h5 id="get-the-total-sales-for-each-product">Get the total sales for each product<a class="headerlink" href="#get-the-total-sales-for-each-product" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">([</span><span class="k">Order</span><span class="w"> </span><span class="n">Details</span><span class="p">].</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="k">Order</span><span class="w"> </span><span class="n">Details</span><span class="p">].</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalSales</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="p">[</span><span class="k">Order</span><span class="w"> </span><span class="n">Details</span><span class="p">]</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">ProductID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="k">Order</span><span class="w"> </span><span class="n">Details</span><span class="p">].</span><span class="n">ProductID</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">ProductName</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">TotalSales</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</code></pre></div>
+<h5 id="find-the-average-freight-cost-per-order">Find the average freight cost per order<a class="headerlink" href="#find-the-average-freight-cost-per-order" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Freight</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">AverageFreight</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span><span class="p">;</span>
+</code></pre></div>
+<h5 id="get-the-total-number-of-products-supplied-by-each-supplier">Get the total number of products supplied by each supplier<a class="headerlink" href="#get-the-total-number-of-products-supplied-by-each-supplier" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">.</span><span class="n">CompanyName</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Products</span><span class="p">.</span><span class="n">ProductID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalProducts</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Suppliers</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Products</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">.</span><span class="n">SupplierID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">SupplierID</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">.</span><span class="n">CompanyName</span><span class="p">;</span>
+</code></pre></div>
+<h5 id="list-all-orders-shipped-to-germany">List all orders shipped to Germany<a class="headerlink" href="#list-all-orders-shipped-to-germany" title="Permanent link">&para;</a></h5>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">,</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">ShipCountry</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">ShipCountry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Germany&#39;</span><span class="p">;</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="../javascripts/custom-abbr.js"></script>
+      
+    
+  </body>
+</html>
