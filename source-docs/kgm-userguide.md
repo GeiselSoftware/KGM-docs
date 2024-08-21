@@ -1,5 +1,3 @@
-# K<span/>GM - User Guide
-
 *kgm* is command-line processor utility which allows user to control and manipulate K<span/>GM-controlled graphs in backend graph database.
 
 ## Installation
@@ -124,7 +122,9 @@ $ kgm import /NorthWind.shacl northwind.shacl.ttl
 $ kgm validate /NorthWind.shacl /NorthWind
 ```
 
-Query examples:
+#### Query examples
+
+##### Counts
 ```sparql
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
@@ -140,4 +140,135 @@ where {
 }
 group by ?order
 order by desc(?c)
+```
+
+```sparql
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+prefix nw: <http://www.geisel-software.com/RDF/NorthWind#>
+
+select ?c (count(*) as ?cc) {
+ select ?order (count(?od) as ?c)
+ where {
+  ?g kgm:path "/NorthWind" .
+  graph ?g {
+   ?order rdf:type nw:Order;
+          nw:order_detail ?od
+  }
+ }
+ group by ?order
+ # order by desc(?c)
+}
+group by ?c
+```
+
+##### Get all products and their suppliers
+
+```sparql
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+prefix nw: <http://www.geisel-software.com/RDF/NorthWind#>
+
+select ?pn ?suppl_n
+where {
+ ?g kgm:path "/NorthWind" .
+ graph ?g {
+  ?p rdf:type nw:Product; nw:supplier ?suppl; nw:productname ?pn.
+  ?suppl nw:suppliername ?suppl_n
+ }
+}
+```
+
+```sql
+SELECT Products.ProductName, Suppliers.SupplierName
+FROM Products
+JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID;
+```
+
+##### List all orders with customer and employee information
+
+```sparql
+select ?orderid ?company_name ?employee_lastname ?orderdate
+where {
+  ?g kgm:path "/NorthWind" .
+  graph ?g {
+    ?customer rdf:type nw:Customer; nw:customername ?company_name.
+    ?order nw:customer ?customer; nw:orderdate ?orderdate; nw:orderid ?orderid.
+    ?order nw:employee ?employee.
+    ?employee nw:lastname ?employee_lastname
+  }
+}
+```
+
+```sql
+SELECT Orders.OrderID, Customers.CompanyName AS Customer, Employees.LastName AS Employee, Orders.OrderDate
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID;
+```
+
+##### Find the total number of orders placed by each customer
+```sql
+SELECT Customers.CompanyName, COUNT(Orders.OrderID) AS TotalOrders
+FROM Customers
+INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+GROUP BY Customers.CompanyName
+ORDER BY TotalOrders DESC;
+```
+
+##### List products that have never been ordered
+```sql
+SELECT ProductName
+FROM Products
+WHERE ProductID NOT IN (SELECT ProductID FROM [Order Details]);
+```
+
+##### Get the top 5 customers with the highest number of orders
+```sql
+SELECT Customers.CompanyName, COUNT(Orders.OrderID) AS OrderCount
+FROM Customers
+INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+GROUP BY Customers.CompanyName
+ORDER BY OrderCount DESC
+LIMIT 5;
+```
+
+##### Find the employee who has processed the most orders
+```sql
+SELECT Employees.LastName, COUNT(Orders.OrderID) AS OrdersProcessed
+FROM Employees
+INNER JOIN Orders ON Employees.EmployeeID = Orders.EmployeeID
+GROUP BY Employees.LastName
+ORDER BY OrdersProcessed DESC
+LIMIT 1;
+```
+
+##### Get the total sales for each product
+```sql
+SELECT Products.ProductName, SUM([Order Details].UnitPrice * [Order Details].Quantity) AS TotalSales
+FROM Products
+INNER JOIN [Order Details] ON Products.ProductID = [Order Details].ProductID
+GROUP BY Products.ProductName
+ORDER BY TotalSales DESC;
+```
+
+##### Find the average freight cost per order
+```sql
+SELECT AVG(Freight) AS AverageFreight
+FROM Orders;
+```
+
+##### Get the total number of products supplied by each supplier
+```sql
+SELECT Suppliers.CompanyName, COUNT(Products.ProductID) AS TotalProducts
+FROM Suppliers
+INNER JOIN Products ON Suppliers.SupplierID = Products.SupplierID
+GROUP BY Suppliers.CompanyName;
+```
+
+##### List all orders shipped to Germany
+```sql
+SELECT Orders.OrderID, Orders.OrderDate, Orders.ShipCountry
+FROM Orders
+WHERE Orders.ShipCountry = 'Germany';
 ```

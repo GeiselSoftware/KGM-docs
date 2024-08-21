@@ -11,8 +11,7 @@ theme:
 markdown_extensions:
   - toc:
       permalink: true
-
-markdown_extensions:
+      toc_depth: 3
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
@@ -34,6 +33,6 @@ extra_css:
 # Page tree
 nav:
   - KG for practical software engeneering: kgm-introduction.md
-  - KGM - Used Guide: kgm-userguide.md
+  - KGM - User Guide: kgm-userguide.md
   - Backends - Fuseki: backends.md
   - Addendum: addendum.md

@@ -12,13 +12,12 @@ def make_URI(prefix, keys):
 def dump_node_members(df, prefix, rdfs_classname, node_uri_col, obj_cols, exclude_cols):
     if exclude_cols:
         df = df.drop(exclude_cols, axis = 1)    
-    literal_cols = list(set(df.columns) - set([node_uri_col]) - set(obj_cols))
-    
+    literal_cols = list(set(df.columns) - set(obj_cols))
+        
     df.insert(0, 'URI', make_URI(rdfs_classname, df[node_uri_col]))
-    df.drop(node_uri_col, inplace = True, axis = 1)
 
     output_cols = []
-    for obj_col in obj_cols:        
+    for obj_col in obj_cols:
         classname = prefix + ":" + obj_col.replace("ID", "")
         pred = prefix + ":" + obj_col.replace("ID", "").lower()
         df[pred] = make_URI(classname, df[obj_col])
@@ -26,7 +25,10 @@ def dump_node_members(df, prefix, rdfs_classname, node_uri_col, obj_cols, exclud
 
     for col in literal_cols:
         pred = prefix + ":" + col.lower()
-        df[pred] = df[col].apply(lambda x: f'"{x}"^^xsd:string')
+        if col.endswith("ID"):
+            df[pred] = df[col].apply(lambda x: x)
+        else:
+            df[pred] = df[col].apply(lambda x: f'"{x}"^^xsd:string')
         output_cols.append(pred)
 
     #if "nw:customer" in output_cols:
