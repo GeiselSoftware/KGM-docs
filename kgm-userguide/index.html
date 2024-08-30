@@ -448,18 +448,7 @@ $ source ~/venv/kgm/bin/activate
 $ pip install py-packages/kgm
 </code></pre></div>
 <h2 id="kgm-path">K<span/>GM path<a class="headerlink" href="#kgm-path" title="Permanent link">&para;</a></h2>
-<p><abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> provides the way to organize the knowledge graphs in the way similar to files in traditional filesystem. It is always necessary to create KG first to specify <em>kgm type</em> and <em>path</em> using <code>kgm new</code> command:</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>kgm<span class="w"> </span>new<span class="w"> </span>--kgm-graph-type<span class="w"> </span>shacl<span class="w"> </span>/alice-bob.shacl
-<span class="go">created graph at path /alice-bob.shacl: http://www.geisel-software.com/RDF/KGM#SHACLGraph--40c4faaf-f311-4112-bfec-a945b4f7cdbb</span>
-
-<span class="gp">$ </span>kgm<span class="w"> </span>new<span class="w"> </span>--kgm-graph-type<span class="w"> </span>data<span class="w"> </span>/alice-bob
-<span class="go">created graph at path /alice-bob: http://www.geisel-software.com/RDF/KGM#DataGraph--5f90e074-5582-4ba6-bcf5-67dc55ed4754</span>
-
-<span class="gp">$ </span>kgm<span class="w"> </span>ls
-<span class="go">        kgm_path                                                  g</span>
-<span class="go">0        &quot;/alice-bob&quot;  kgm:DataGraph--5f90e074-5582-4ba6-bcf5-67dc55e...</span>
-<span class="go">1  &quot;/alice-bob.shacl&quot;  kgm:SHACLGraph--40c4faaf-f311-4112-bfec-a945b4...</span>
-</code></pre></div>
+<p><abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> provides the way to organize the knowledge graphs in the way similar to files in traditional filesystem.</p>
 <p>One of the way to populate KG is to dowload .ttl file using <code>kgm import</code> command:
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>kgm<span class="w"> </span>import<span class="w"> </span>/alice-bob.shacl<span class="w"> </span>http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.shacl.ttl
 <span class="go">/alice-bob.shacl http://www.geisel-software.com/RDF/KGM#SHACLGraph--40c4faaf-f311-4112-bfec-a945b4f7cdbb</span>
@@ -532,9 +521,7 @@ $ pip install py-packages/kgm
 <span class="gp">$ </span>sqlite3<span class="w"> </span>northwind.sqlitedb<span class="w"> </span>&lt;<span class="w"> </span>northwind-sqlite.sql
 <span class="gp">$ </span>python<span class="w"> </span>build-rdf.py<span class="w"> </span>&gt;<span class="w"> </span>northwind.data.ttl
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>kgm<span class="w"> </span>new<span class="w"> </span>-t<span class="w"> </span>data<span class="w"> </span>/NorthWind
-<span class="gp">$ </span>kgm<span class="w"> </span>new<span class="w"> </span>-t<span class="w"> </span>shacl<span class="w"> </span>/NorthWind.shacl
-<span class="gp">$ </span>kgm<span class="w"> </span>import<span class="w"> </span>/NorthWind<span class="w"> </span>northwind.data.ttl
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>kgm<span class="w"> </span>import<span class="w"> </span>/NorthWind<span class="w"> </span>northwind.data.ttl
 <span class="gp">$ </span>kgm<span class="w"> </span>import<span class="w"> </span>/NorthWind.shacl<span class="w"> </span>northwind.shacl.ttl
 <span class="gp">$ </span>kgm<span class="w"> </span>validate<span class="w"> </span>/NorthWind.shacl<span class="w"> </span>/NorthWind
 </code></pre></div>
