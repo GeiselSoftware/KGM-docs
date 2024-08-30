@@ -2,7 +2,7 @@
 
 ## Preface
 
-Knowledge Graph and related technologies were introduced by practitioners in the area of [knowledge representation](https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning). Historically KG technologies were used by data analysts and designers with purpose to build various ontologies and taxonomies to cover very wide areas of business and science. [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page) could be considered as famous example of such efforts - the project provides [SPARQL interface](https://www.wikidata.org/wiki/Wikidata:Request_a_query#Help_with_a_query) to allow queries using wikipedia data.
+Knowledge Graph and related technologies were introduced by practitioners in the area of [knowledge representation](https://en.wikipedia.org/wiki/Knowledge_representation_and_reasoning). Historically KG technologies were used by data analysts and designers with purpose to build various ontologies and taxonomies to cover very wide areas of business and science. [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page) is the famous example of such efforts - the project provides [SPARQL interface](https://www.wikidata.org/wiki/Wikidata:Request_a_query#Help_with_a_query) to allow queries using wikipedia data.
 
 This document purpose is to provide practical alternative to the mainstream KG tutorials. After minimalistic introduction we are going to concentrate on few examples of purely technical utilization of **available** KG tech tools. In most cases it will be possible to easily reproduce this document scripts and queries using only python's [rdflib](https://pypi.org/project/rdflib/) and [graphviz](https://pypi.org/project/graphviz/) packages - i.e. no DB server install would be necessary.
 
@@ -27,7 +27,7 @@ It is the data fragment from [ab.data.ttl] describing our version of ubiquitous 
 
 URI is Uniform Resource Identifier. You can quickly glance to [few U<span/>RI examples](https://datatracker.ietf.org/doc/html/rfc3986#section-1.1.2) - as you see URI is quite practical and familiar notation often used in various web services. E.g. well-known URLs used in web browsers are special kind of URI.
 
-In the example above `ab:alice` is equivalent to URI `<http://www.geisel-software.com/RDF/alice-bob#alice>`. They both can be used to identify the same person: Alice. `ab:alice` is an example of CURIE (compact <span>U</span>RI). RDF/turtle (or just turtle) allows to use compact U<span/>RIs via use of turtle `@prefix` directive. The same example where all statements are shown with prefixes applied:
+In the example above `ab:alice` is equivalent to URI `<http://www.geisel-software.com/RDF/alice-bob#alice>`. They both can be used to identify the same person: Alice. `ab:alice` is an example of CURIE (compact <span>U</span>RI). RDF/turtle allows to use compact U<span/>RIs via use of RDF/turtle `@prefix` directive. The same example where all statements are shown with prefixes applied:
 
 ```
 <http://www.geisel-software.com/RDF/alice-bob#alice> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.geisel-software.com/RDF/alice-bob#Human> .
@@ -36,20 +36,38 @@ In the example above `ab:alice` is equivalent to URI `<http://www.geisel-softwar
 <http://www.geisel-software.com/RDF/alice-bob#bob> <http://www.geisel-software.com/RDF/alice-bob#name> "Bob" .
 ```
 
-As you see `ab:` was replaced *in verbatim* with corresponding prefix URI, the same opertaion was done for prefix `rdf`: all using `@prefix` directives found at the begining of turtle file.
+As you see `ab:` was replaced *in verbatim* with corresponding prefix URI, the same opertaion was done for prefix `rdf`: all using `@prefix` directives found at the begining of RDF/turtle file.
 
-turtle rules prescribe to enclose URIs inside of angle brackets to designate the string between brackets as URI. The angle brackets themselves are not part of URI. E.g. first line *predicate* is URI `http://www.w3.org/1999/02/22-rdf-syntax-ns#type`.
+RDF/turtle rules prescribe to enclose URIs inside of angle brackets to designate the string between brackets as URI. The angle brackets themselves are not part of URI. E.g. first line *predicate* is URI `http://www.w3.org/1999/02/22-rdf-syntax-ns#type`.
 
 In the second line of the example you've seen that *object* could also be [R<span/>DF Literal]. In RDF/turtle the string l<span>iterals are in double-quotes to distibguish them from URIs. E.g. the third statement *object* is string *Alice*.
 
-There are other ways to represent RDF triples: e.g. [R<span/>DF/XML](https://en.wikipedia.org/wiki/RDF/XML). However [RDF/turtle](https://en.wikipedia.org/wiki/Turtle_(syntax)) syntax plays special role. It used as important part of the query language called SPARQL. It is also main RDF representation in various W3C and similar formal documents.
+There are other ways to represent RDF triples. E.g. [R<span/>DF/XML](https://en.wikipedia.org/wiki/RDF/XML):
+```
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ns0="http://www.geisel-software.com/RDF/alice-bob#">
 
-So from this point:
+  <rdf:Description rdf:about="http://www.geisel-software.com/RDF/alice-bob#alice">
+    <rdf:type rdf:resource="http://www.geisel-software.com/RDF/alice-bob#Human"/>
+    <ns0:name>Alice</ns0:name>
+  </rdf:Description>
+
+  <ns0:Human rdf:about="http://www.geisel-software.com/RDF/alice-bob#bob">
+    <ns0:name>Bob</ns0:name>
+  </ns0:Human>
+
+</rdf:RDF>
+```
+
+However [RDF/turtle](https://en.wikipedia.org/wiki/Turtle_(syntax)) syntax plays special role. It used as important part of the query language called SPARQL. It is also main RDF representation in various W3C and similar formal documents.
+
+From this point:
 
  - any mention of [R<span/>DF] would assume RDF/turtle unless stated otherwise.
  - any literal is [R<span/>DF Literal] as defined by RDF/turtle document.
 
-One more important wide-spread assumption is introduction of small list of well-known prefixes. It leads to situation when CURIEs are often called URIs assuming it is always possible to apply prefix expansion. Such expansion will be based on either well-known prefixes (often omit in the documents) or locally defined prefixes for particular RDF file or SPARQL query.
+One more important wide-spread assumption is introduction of small list of [well-known prefixes](/KGM-docs/addendum/#well-known-prefixes). It leads to situation when CURIEs are often called URIs assuming it is always possible to apply prefix expansion. Such expansion will be based on either well-known prefixes (often omit in the documents) or locally defined prefixes for particular RDF file or SPARQL query.
 
 Most well-known prefixes are:
 ```
@@ -60,7 +78,6 @@ Most well-known prefixes are:
 @prefix dash: <http://datashapes.org/dash#> .
 ```
 
-The same list is also given in addendum section [Well-known prefixes](/KGM-docs/addendum/#well-known-prefixes).
 You can also lookup prefixes at [https://prefix.cc](https://prefix.cc). E.g. Friend-Of-A-Friend prefix link [foaf:](https://prefix.cc/foaf) will give you details of prefix and related defitions.
 
 ## RDF triples

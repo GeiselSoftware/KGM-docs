@@ -11,20 +11,7 @@ $ pip install py-packages/kgm
 ```
 
 ## K<span/>GM path
-KGM provides the way to organize the knowledge graphs in the way similar to files in traditional filesystem. It is always necessary to create KG first to specify *kgm type* and *path* using `kgm new` command:
-
-```console
-$ kgm new --kgm-graph-type shacl /alice-bob.shacl
-created graph at path /alice-bob.shacl: http://www.geisel-software.com/RDF/KGM#SHACLGraph--40c4faaf-f311-4112-bfec-a945b4f7cdbb
-
-$ kgm new --kgm-graph-type data /alice-bob
-created graph at path /alice-bob: http://www.geisel-software.com/RDF/KGM#DataGraph--5f90e074-5582-4ba6-bcf5-67dc55ed4754
-
-$ kgm ls
-        kgm_path                                                  g
-0        "/alice-bob"  kgm:DataGraph--5f90e074-5582-4ba6-bcf5-67dc55e...
-1  "/alice-bob.shacl"  kgm:SHACLGraph--40c4faaf-f311-4112-bfec-a945b4...
-```
+KGM provides the way to organize the knowledge graphs in the way similar to files in traditional filesystem.
 
 One of the way to populate KG is to dowload .ttl file using `kgm import` command:
 ```console
@@ -115,8 +102,6 @@ $ python build-rdf.py > northwind.data.ttl
 ```
 
 ```console
-$ kgm new -t data /NorthWind
-$ kgm new -t shacl /NorthWind.shacl
 $ kgm import /NorthWind northwind.data.ttl
 $ kgm import /NorthWind.shacl northwind.shacl.ttl
 $ kgm validate /NorthWind.shacl /NorthWind

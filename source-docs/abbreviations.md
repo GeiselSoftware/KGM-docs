@@ -1,5 +1,4 @@
 *[RDF/turtle]: https://www.w3.org/TR/rdf12-turtle/ "Resource Description Framework - Turtle"
-*[turtle]: https://www.w3.org/TR/rdf12-turtle/ "Resource Description Framework - Turtle"
 *[RDF triples]: https://www.w3.org/TR/rdf12-concepts/#section-triples
 *[RDF triple]: https://www.w3.org/TR/rdf12-concepts/#section-triples
 *[RDF]: https://www.w3.org/TR/rdf12-turtle/ "Resource Description Framework - Turtle"
