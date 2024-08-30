@@ -52,4 +52,7 @@ TopQuandrant SHACL implementation: [https://github.com/TopQuadrant/shacl](https:
 Validate script located at `src/main/command/`, file `shaclvalidate.sh`
 Use binary distrib from https://repo1.maven.org/maven2/org/topbraid/shacl/
 
+## Appendix C: rdflib notes
+
+RDFLib has [Dataset](https://rdflib.readthedocs.io/en/stable/apidocs/rdflib.html#rdflib.Dataset) class. It is the way to build rdflib-based vgm backend, see examples/rdflib/test-trig.py
 
