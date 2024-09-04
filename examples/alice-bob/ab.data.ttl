@@ -1,5 +1,12 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
 @prefix ab: <http://www.geisel-software.com/RDF/alice-bob#>.
+
+ab:Human rdf:type rdfs:Class.
+ab:Cat rdf:type rdfs:Class.
+ab:Dog rdf:type rdfs:Class.
+ab:Location rdf:type rdfs:Class.
 
 ab:alice rdf:type ab:Human.
 ab:bob rdf:type ab:Human.
@@ -23,4 +30,4 @@ ab:amy ab:name "Amy"; ab:ownedBy ab:alice .
 ab:luna ab:name "Luna"; ab:ownedBy ab:bob .
 
 ab:worcester ab:city-name "Worcester"; ab:county "Worcester"; ab:country-code "US".
-ab:boston ab:city-name "Boston"; ab:county: "Lincolnshire"; ab:country-code "UK".
+ab:boston ab:city-name "Boston"; ab:county "Lincolnshire"; ab:country-code "UK".

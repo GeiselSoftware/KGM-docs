@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
       
       
 
@@ -490,7 +490,29 @@ $ pip install py-packages/kgm
 <li><a href="../examples/alice-bob/ab.data.ttl">ab.data.ttl</a> -- data <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triples</abbr></li>
 <li><a href="../examples/alice-bob/ab.shacl.ttl">ab.shacl.ttl</a> -- <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> structure</li>
 </ul>
-<p>Alice-Bob queries:</p>
+<p>Import commands:</p>
+<div class="highlight"><pre><span></span><code>kgm import /alice-bob.shacl https://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.shacl.ttl
+kgm import /alice-bob https://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.data.ttl
+</code></pre></div>
+<h4 id="alice-bob-queries">Alice-Bob queries<a class="headerlink" href="#alice-bob-queries" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
+<span class="k">prefix</span> <span class="nn">ab</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/alice-bob#&gt;</span>
+
+<span class="k">select</span> <span class="nv">?h_name</span> <span class="nv">?city</span> <span class="nv">?f_name</span> <span class="nv">?f_city</span> <span class="k">where</span> <span class="p">{</span>
+ <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/alice-bob&quot;</span>
+ <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+  <span class="k">bind</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span> <span class="k">as</span> <span class="nv">?h_name</span><span class="p">)</span>
+  <span class="nv">?human</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">name</span> <span class="nv">?h_name</span><span class="p">.</span>
+  <span class="nv">?human</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">livesIn</span> <span class="nv">?loc</span><span class="p">.</span>
+  <span class="nv">?loc</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">city-name</span> <span class="nv">?city</span><span class="p">.</span>
+  <span class="nv">?human</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">friendOf</span> <span class="nv">?friend</span><span class="p">.</span>
+  <span class="nv">?friend</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">name</span> <span class="nv">?f_name</span><span class="p">.</span>
+  <span class="nv">?friend</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">livesIn</span> <span class="nv">?f_loc</span><span class="p">.</span>
+  <span class="nv">?f_loc</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">city-name</span> <span class="nv">?f_city</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
 <span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
 <span class="k">prefix</span> <span class="nn">ab</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/alice-bob#&gt;</span>
@@ -515,7 +537,7 @@ $ pip install py-packages/kgm
 <li><a href="../examples/northwind/northwind.shacl.ttl">northwind.shacl.ttl</a> -- <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> schema of Northwind</li>
 </ul>
 <p>The script <a href="../examples/northwind/build-rdf.py">build-rdf.py</a> uses <abbr title="https://rdflib.readthedocs.io/en/stable/">rdflib</abbr> python package.</p>
-<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget<span class="w"> </span>https://geiselsoftware.github.io/KGM-docs/examples/northwind/nortwind-sqlite.sql
+<div class="highlight"><pre><span></span><code><span class="gp">$ </span>wget<span class="w"> </span>https://geiselsoftware.github.io/KGM-docs/examples/northwind/northwind-sqlite.sql
 <span class="gp">$ </span>wget<span class="w"> </span>https://geiselsoftware.github.io/KGM-docs/examples/northwind/northwind.shacl.ttl
 <span class="gp">$ </span>wget<span class="w"> </span>https://geiselsoftware.github.io/KGM-docs/examples/northwind/build-rdf.py
 <span class="gp">$ </span>sqlite3<span class="w"> </span>northwind.sqlitedb<span class="w"> </span>&lt;<span class="w"> </span>northwind-sqlite.sql
@@ -527,27 +549,43 @@ $ pip install py-packages/kgm
 </code></pre></div>
 <h4 id="query-examples">Query examples<a class="headerlink" href="#query-examples" title="Permanent link">&para;</a></h4>
 <h5 id="counts">Counts<a class="headerlink" href="#counts" title="Permanent link">&para;</a></h5>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_1_2">SQL</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
 <span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
 <span class="k">prefix</span> <span class="nn">nw</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/NorthWind#&gt;</span>
 
-<span class="k">select</span> <span class="nv">?order</span> <span class="p">(</span><span class="nf">count</span><span class="p">(</span><span class="nv">?od</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?c</span><span class="p">)</span>
-<span class="k">where</span> <span class="p">{</span>
-  <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/NorthWind&quot;</span> <span class="p">.</span>
-  <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
-    <span class="nv">?order</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">Order</span><span class="p">;</span>
-           <span class="nn">nw</span><span class="p">:</span><span class="nt">order_detail</span> <span class="nv">?od</span>
-  <span class="p">}</span>
+<span class="k">select</span> <span class="nv">?order</span> <span class="p">(</span><span class="nf">count</span><span class="p">(</span><span class="nv">?od</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?c</span><span class="p">)</span> <span class="k">where</span> <span class="p">{</span>
+ <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/NorthWind&quot;</span> <span class="p">.</span>
+ <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+  <span class="nv">?order</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">Order</span><span class="p">;</span>
+  <span class="nn">nw</span><span class="p">:</span><span class="nt">order_detail</span> <span class="nv">?od</span>
+ <span class="p">}</span>
 <span class="p">}</span>
 <span class="k">group by</span> <span class="nv">?order</span>
 <span class="k">order by</span> <span class="k">desc</span><span class="p">(</span><span class="nv">?c</span><span class="p">)</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span>
+<span class="k">from</span><span class="w"> </span><span class="n">OrderDetails</span><span class="w"> </span>
+<span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">OrderID</span><span class="w"> </span>
+<span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h5 id="counts-2">Counts 2<a class="headerlink" href="#counts-2" title="Permanent link">&para;</a></h5>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_2_2">SQL</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
 <span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
 <span class="k">prefix</span> <span class="nn">nw</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/NorthWind#&gt;</span>
 
-<span class="k">select</span> <span class="nv">?c</span> <span class="p">(</span><span class="nf">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?cc</span><span class="p">)</span> <span class="p">{</span>
- <span class="k">select</span> <span class="nv">?order</span> <span class="p">(</span><span class="nf">count</span><span class="p">(</span><span class="nv">?od</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?c</span><span class="p">)</span>
+<span class="k">select</span> <span class="nv">?items_count</span> <span class="p">(</span><span class="nf">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?c</span><span class="p">)</span> <span class="p">{</span>
+ <span class="k">select</span> <span class="nv">?order</span> <span class="p">(</span><span class="nf">count</span><span class="p">(</span><span class="nv">?od</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?items_count</span><span class="p">)</span>
  <span class="k">where</span> <span class="p">{</span>
   <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/NorthWind&quot;</span> <span class="p">.</span>
   <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
@@ -556,11 +594,28 @@ $ pip install py-packages/kgm
   <span class="p">}</span>
  <span class="p">}</span>
  <span class="k">group by</span> <span class="nv">?order</span>
- <span class="c"># order by desc(?c)</span>
 <span class="p">}</span>
-<span class="k">group by</span> <span class="nv">?c</span>
+<span class="k">group by</span> <span class="nv">?items_count</span>
+<span class="k">order by</span> <span class="nv">?items_count</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">items_count</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="k">from</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">items_count</span>
+<span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">OrderDetails</span>
+<span class="w"> </span><span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">OrderID</span>
+<span class="p">)</span>
+<span class="k">group</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="mi">1</span>
+<span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
 <h5 id="get-all-products-and-their-suppliers">Get all products and their suppliers<a class="headerlink" href="#get-all-products-and-their-suppliers" title="Permanent link">&para;</a></h5>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_3_2">SQL</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
 <span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
 <span class="k">prefix</span> <span class="nn">nw</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/NorthWind#&gt;</span>
@@ -574,40 +629,87 @@ $ pip install py-packages/kgm
  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">.</span><span class="n">SupplierName</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
 <span class="k">JOIN</span><span class="w"> </span><span class="n">Suppliers</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">SupplierID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">.</span><span class="n">SupplierID</span><span class="p">;</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <h5 id="list-all-orders-with-customer-and-employee-information">List all orders with customer and employee information<a class="headerlink" href="#list-all-orders-with-customer-and-employee-information" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="nv">?orderid</span> <span class="nv">?company_name</span> <span class="nv">?employee_lastname</span> <span class="nv">?orderdate</span>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_4_2">SQL</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
+<span class="k">prefix</span> <span class="nn">nw</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/NorthWind#&gt;</span>
+
+<span class="k">select</span> <span class="nv">?orderid</span> <span class="nv">?customer_name</span> <span class="nv">?employee_lastname</span> <span class="nv">?orderdate</span>
 <span class="k">where</span> <span class="p">{</span>
-  <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/NorthWind&quot;</span> <span class="p">.</span>
-  <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
-    <span class="nv">?customer</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">Customer</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">customername</span> <span class="nv">?company_name</span><span class="p">.</span>
-    <span class="nv">?order</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">customer</span> <span class="nv">?customer</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">orderdate</span> <span class="nv">?orderdate</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">orderid</span> <span class="nv">?orderid</span><span class="p">.</span>
-    <span class="nv">?order</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">employee</span> <span class="nv">?employee</span><span class="p">.</span>
-    <span class="nv">?employee</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">lastname</span> <span class="nv">?employee_lastname</span>
-  <span class="p">}</span>
+ <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/NorthWind&quot;</span> <span class="p">.</span>
+ <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+  <span class="nv">?customer</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">Customer</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">customername</span> <span class="nv">?customer_name</span><span class="p">.</span>
+  <span class="nv">?order</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">customer</span> <span class="nv">?customer</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">orderdate</span> <span class="nv">?orderdate</span><span class="p">;</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">orderid</span> <span class="nv">?orderid</span><span class="p">;</span>
+         <span class="nn">nw</span><span class="p">:</span><span class="nt">employee</span> <span class="nv">?employee</span><span class="p">.</span>
+  <span class="nv">?employee</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">lastname</span> <span class="nv">?employee_lastname</span>
+ <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CompanyName</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Customer</span><span class="p">,</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">LastName</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderDate</span>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerName</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Customer</span><span class="p">,</span>
+<span class="w">       </span><span class="n">Employees</span><span class="p">.</span><span class="n">LastName</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Employee</span><span class="p">,</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderDate</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
 <span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span>
 <span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Employees</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">EmployeeID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">EmployeeID</span><span class="p">;</span>
 </code></pre></div>
-<h5 id="find-the-total-number-of-orders-placed-by-each-customer">Find the total number of orders placed by each customer<a class="headerlink" href="#find-the-total-number-of-orders-placed-by-each-customer" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CompanyName</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalOrders</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
-<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CompanyName</span>
+</div>
+</div>
+</div>
+<!--
+##### WIP - Find the total number of orders placed by each customer
+=== "SPARQL"
+    <div class="highlight"><pre><span></span><code><span class="c"># BUG in Fuseki2</span>
+<span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
+<span class="k">prefix</span> <span class="nn">nw</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/NorthWind#&gt;</span>
+
+<span class="k">select</span> <span class="o">*</span>
+<span class="p">{</span>
+ <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/NorthWind&quot;</span> <span class="p">.</span>
+ <span class="p">{</span>
+  <span class="k">select</span> <span class="p">(</span><span class="nf">count</span><span class="p">(</span><span class="nv">?order</span><span class="p">)</span> <span class="k">as</span> <span class="nv">?c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+    <span class="nv">?customer</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">Customer</span><span class="p">.</span>
+    <span class="nv">?order</span> <span class="nn">nw</span><span class="p">:</span><span class="nt">customer</span> <span class="nv">?customer</span><span class="p">.</span>
+   <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">group by</span> <span class="nv">?customer</span>
+ <span class="p">}</span>
+ <span class="nv">?customer</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">type</span> <span class="nv">?cn</span>
+<span class="p">}</span>
+</code></pre></div>
+=== "SQL"
+    <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">counts</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">,</span><span class="w"> </span><span class="n">CustomerName</span><span class="p">,</span><span class="w"> </span><span class="n">TotalOrders</span>
+<span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalOrders</span>
+<span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
+<span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span>
+<span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span>
+<span class="p">)</span><span class="w"> </span><span class="n">counts</span>
+<span class="k">JOIN</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">counts</span><span class="p">.</span><span class="n">CustomerID</span>
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">TotalOrders</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </code></pre></div>
-<h5 id="list-products-that-have-never-been-ordered">List products that have never been ordered<a class="headerlink" href="#list-products-that-have-never-been-ordered" title="Permanent link">&para;</a></h5>
+
+##### List products that have never been ordered
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">ProductName</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">ProductID</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">ProductID</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">[</span><span class="k">Order</span><span class="w"> </span><span class="n">Details</span><span class="p">]);</span>
 </code></pre></div>
-<h5 id="get-the-top-5-customers-with-the-highest-number-of-orders">Get the top 5 customers with the highest number of orders<a class="headerlink" href="#get-the-top-5-customers-with-the-highest-number-of-orders" title="Permanent link">&para;</a></h5>
+
+##### Get the top 5 customers with the highest number of orders
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CompanyName</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OrderCount</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Customers</span>
 <span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Customers</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">CustomerID</span>
@@ -615,7 +717,8 @@ $ pip install py-packages/kgm
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">OrderCount</span><span class="w"> </span><span class="k">DESC</span>
 <span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 </code></pre></div>
-<h5 id="find-the-employee-who-has-processed-the-most-orders">Find the employee who has processed the most orders<a class="headerlink" href="#find-the-employee-who-has-processed-the-most-orders" title="Permanent link">&para;</a></h5>
+
+##### Find the employee who has processed the most orders
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">LastName</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OrdersProcessed</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
 <span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Employees</span><span class="p">.</span><span class="n">EmployeeID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">EmployeeID</span>
@@ -623,28 +726,33 @@ $ pip install py-packages/kgm
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">OrdersProcessed</span><span class="w"> </span><span class="k">DESC</span>
 <span class="k">LIMIT</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </code></pre></div>
-<h5 id="get-the-total-sales-for-each-product">Get the total sales for each product<a class="headerlink" href="#get-the-total-sales-for-each-product" title="Permanent link">&para;</a></h5>
+
+##### Get the total sales for each product
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">([</span><span class="k">Order</span><span class="w"> </span><span class="n">Details</span><span class="p">].</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">[</span><span class="k">Order</span><span class="w"> </span><span class="n">Details</span><span class="p">].</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalSales</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
 <span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="p">[</span><span class="k">Order</span><span class="w"> </span><span class="n">Details</span><span class="p">]</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">ProductID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="k">Order</span><span class="w"> </span><span class="n">Details</span><span class="p">].</span><span class="n">ProductID</span>
 <span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">ProductName</span>
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">TotalSales</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </code></pre></div>
-<h5 id="find-the-average-freight-cost-per-order">Find the average freight cost per order<a class="headerlink" href="#find-the-average-freight-cost-per-order" title="Permanent link">&para;</a></h5>
+
+##### Find the average freight cost per order
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">Freight</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">AverageFreight</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span><span class="p">;</span>
 </code></pre></div>
-<h5 id="get-the-total-number-of-products-supplied-by-each-supplier">Get the total number of products supplied by each supplier<a class="headerlink" href="#get-the-total-number-of-products-supplied-by-each-supplier" title="Permanent link">&para;</a></h5>
+
+##### Get the total number of products supplied by each supplier
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">.</span><span class="n">CompanyName</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Products</span><span class="p">.</span><span class="n">ProductID</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalProducts</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Suppliers</span>
 <span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Products</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">.</span><span class="n">SupplierID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Products</span><span class="p">.</span><span class="n">SupplierID</span>
 <span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Suppliers</span><span class="p">.</span><span class="n">CompanyName</span><span class="p">;</span>
 </code></pre></div>
-<h5 id="list-all-orders-shipped-to-germany">List all orders shipped to Germany<a class="headerlink" href="#list-all-orders-shipped-to-germany" title="Permanent link">&para;</a></h5>
+
+##### List all orders shipped to Germany
 <div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">,</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">ShipCountry</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">Orders</span><span class="p">.</span><span class="n">ShipCountry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Germany&#39;</span><span class="p">;</span>
 </code></pre></div>
+-->
 
 
 

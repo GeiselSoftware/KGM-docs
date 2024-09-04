@@ -6,7 +6,8 @@
 
 @prefix ab: <http://www.geisel-software.com/RDF/alice-bob#> .
 
-ab:Human rdf:type rdfs:Class; rdf:type sh:NodeShape;
+ab:Human rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
+ 	 sh:property [sh:path rdf:type; sh:minCount: 1; sh:class rdfs:Class];
          sh:property [sh:path ab:name;
 	 	      sh:minCount 1; sh:maxCount 1;
 		      sh:datatype xsd:string];
@@ -17,7 +18,8 @@ ab:Human rdf:type rdfs:Class; rdf:type sh:NodeShape;
 	              sh:minCount 1;
 		      sh:class ab:Location].
 
-ab:Dog rdf:type rdfs:Class; rdf:type sh:NodeShape;
+ab:Dog rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
+       sh:property [sh:path rdf:type; sh:minCount: 1; sh:class rdfs:Class];
        sh:property [sh:path ab:name;
        		    sh:minCount 1; sh:maxCount 1;
 		    sh:datatype xsd:string];
@@ -25,7 +27,8 @@ ab:Dog rdf:type rdfs:Class; rdf:type sh:NodeShape;
        		    sh:minCount 1; sh:maxCount 1;
 		    sh:class ab:Human] .
 
-ab:Cat rdf:type rdfs:Class; rdf:type sh:NodeShape;
+ab:Cat rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
+       sh:property [sh:path rdf:type; sh:minCount: 1; sh:class rdfs:Class];
        sh:property [sh:path ab:name;
        		    sh:minCount 1; sh:maxCount 1;
 		    sh:datatype xsd:string];
@@ -33,7 +36,8 @@ ab:Cat rdf:type rdfs:Class; rdf:type sh:NodeShape;
        		    sh:minCount 1; sh:maxCount 1;
 		    sh:class ab:Human] .
 
-ab:Location rdf:type rdfs:Class; rdf:type sh:NodeShape;
+ab:Location rdf:type rdfs:Class; rdf:type sh:NodeShape; sh:closed true;
+       sh:property [sh:path rdf:type; sh:minCount: 1; sh:class rdfs:Class];
        sh:property [sh:path ab:city-name;
        		    sh:minCount 1; sh:maxCount 1;
 		    sh:datatype xsd:string];
