@@ -61,7 +61,34 @@ data files location:
  - [ab.data.ttl] -- data RDF triples
  - [ab.shacl.ttl] -- SHACL structure
 
-Alice-Bob queries:
+Import commands:
+
+```
+kgm import /alice-bob.shacl https://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.shacl.ttl
+kgm import /alice-bob https://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.data.ttl
+```
+
+#### Alice-Bob queries
+
+```sparql
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+prefix ab: <http://www.geisel-software.com/RDF/alice-bob#>
+
+select ?h_name ?city ?f_name ?f_city where {
+ ?g kgm:path "/alice-bob"
+ graph ?g {
+  bind("Alice" as ?h_name)
+  ?human ab:name ?h_name.
+  ?human ab:livesIn ?loc.
+  ?loc ab:city-name ?city.
+  ?human ab:friendOf ?friend.
+  ?friend ab:name ?f_name.
+  ?friend ab:livesIn ?f_loc.
+  ?f_loc ab:city-name ?f_city
+ }
+}
+```
 
 ```sparql
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -94,7 +121,7 @@ data file locations:
 The script [build-rdf.py](examples/northwind/build-rdf.py) uses rdflib python package.
 
 ```console
-$ wget https://geiselsoftware.github.io/KGM-docs/examples/northwind/nortwind-sqlite.sql
+$ wget https://geiselsoftware.github.io/KGM-docs/examples/northwind/northwind-sqlite.sql
 $ wget https://geiselsoftware.github.io/KGM-docs/examples/northwind/northwind.shacl.ttl
 $ wget https://geiselsoftware.github.io/KGM-docs/examples/northwind/build-rdf.py
 $ sqlite3 northwind.sqlitedb < northwind-sqlite.sql
@@ -110,96 +137,153 @@ $ kgm validate /NorthWind.shacl /NorthWind
 #### Query examples
 
 ##### Counts
-```sparql
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
-prefix nw: <http://www.geisel-software.com/RDF/NorthWind#>
+=== "SPARQL"
+    ```sparql
+    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+    prefix nw: <http://www.geisel-software.com/RDF/NorthWind#>
 
-select ?order (count(?od) as ?c)
-where {
-  ?g kgm:path "/NorthWind" .
-  graph ?g {
-    ?order rdf:type nw:Order;
-    	   nw:order_detail ?od
-  }
-}
-group by ?order
-order by desc(?c)
-```
+    select ?order (count(?od) as ?c) where {
+     ?g kgm:path "/NorthWind" .
+     graph ?g {
+      ?order rdf:type nw:Order;
+      nw:order_detail ?od
+     }
+    }
+    group by ?order
+    order by desc(?c)
+    ```
+=== "SQL"
+    ```sql
+    select OrderID, count(*) 
+    from OrderDetails 
+    group by OrderID 
+    order by count(*);
+    ```
 
-```sparql
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
-prefix nw: <http://www.geisel-software.com/RDF/NorthWind#>
+##### Counts 2
 
-select ?c (count(*) as ?cc) {
- select ?order (count(?od) as ?c)
- where {
-  ?g kgm:path "/NorthWind" .
-  graph ?g {
-   ?order rdf:type nw:Order;
-          nw:order_detail ?od
-  }
- }
- group by ?order
- # order by desc(?c)
-}
-group by ?c
-```
+=== "SPARQL"
+    ```sparql
+    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+    prefix nw: <http://www.geisel-software.com/RDF/NorthWind#>
+
+    select ?items_count (count(*) as ?c) {
+     select ?order (count(?od) as ?items_count)
+     where {
+      ?g kgm:path "/NorthWind" .
+      graph ?g {
+       ?order rdf:type nw:Order;
+              nw:order_detail ?od
+      }
+     }
+     group by ?order
+    }
+    group by ?items_count
+    order by ?items_count
+    ```
+=== "SQL"
+    ```sql
+    select items_count, count(*)
+    from (
+     select OrderID, count(*) as items_count
+     from OrderDetails
+     group by OrderID
+    )
+    group by 1
+    order by 1;
+    ```
 
 ##### Get all products and their suppliers
 
-```sparql
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
-prefix nw: <http://www.geisel-software.com/RDF/NorthWind#>
+=== "SPARQL"
+    ```sparql
+    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+    prefix nw: <http://www.geisel-software.com/RDF/NorthWind#>
 
-select ?pn ?suppl_n
-where {
- ?g kgm:path "/NorthWind" .
- graph ?g {
-  ?p rdf:type nw:Product; nw:supplier ?suppl; nw:productname ?pn.
-  ?suppl nw:suppliername ?suppl_n
- }
-}
-```
+    select ?pn ?suppl_n
+    where {
+     ?g kgm:path "/NorthWind" .
+     graph ?g {
+      ?p rdf:type nw:Product; nw:supplier ?suppl; nw:productname ?pn.
+      ?suppl nw:suppliername ?suppl_n
+     }
+    }
+    ```
+=== "SQL"
+    ```sql
+    SELECT Products.ProductName, Suppliers.SupplierName
+    FROM Products
+    JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID;
+    ```
 
-```sql
-SELECT Products.ProductName, Suppliers.SupplierName
-FROM Products
-JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID;
-```
 
 ##### List all orders with customer and employee information
 
-```sparql
-select ?orderid ?company_name ?employee_lastname ?orderdate
-where {
-  ?g kgm:path "/NorthWind" .
-  graph ?g {
-    ?customer rdf:type nw:Customer; nw:customername ?company_name.
-    ?order nw:customer ?customer; nw:orderdate ?orderdate; nw:orderid ?orderid.
-    ?order nw:employee ?employee.
-    ?employee nw:lastname ?employee_lastname
-  }
-}
-```
+=== "SPARQL"
+    ```sparql
+    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+    prefix nw: <http://www.geisel-software.com/RDF/NorthWind#>
 
-```sql
-SELECT Orders.OrderID, Customers.CompanyName AS Customer, Employees.LastName AS Employee, Orders.OrderDate
-FROM Orders
-INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
-INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID;
-```
+    select ?orderid ?customer_name ?employee_lastname ?orderdate
+    where {
+     ?g kgm:path "/NorthWind" .
+     graph ?g {
+      ?customer rdf:type nw:Customer; nw:customername ?customer_name.
+      ?order nw:customer ?customer; nw:orderdate ?orderdate; nw:orderid ?orderid;
+             nw:employee ?employee.
+      ?employee nw:lastname ?employee_lastname
+     }
+    }
+    ```
+=== "SQL"
+    ```sql
+    SELECT Orders.OrderID, Customers.CustomerName AS Customer,
+    	   Employees.LastName AS Employee, Orders.OrderDate
+    FROM Orders
+    INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+    INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID;
+    ```
 
-##### Find the total number of orders placed by each customer
-```sql
-SELECT Customers.CompanyName, COUNT(Orders.OrderID) AS TotalOrders
-FROM Customers
-INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
-GROUP BY Customers.CompanyName
-ORDER BY TotalOrders DESC;
-```
+<!--
+##### WIP - Find the total number of orders placed by each customer
+=== "SPARQL"
+    ```sparql
+    # BUG in Fuseki2
+    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+    prefix nw: <http://www.geisel-software.com/RDF/NorthWind#>
+
+    select *
+    {
+     ?g kgm:path "/NorthWind" .
+     {
+      select (count(?order) as ?c) {
+      graph ?g {
+        ?customer rdf:type nw:Customer.
+        ?order nw:customer ?customer.
+       }
+      }
+      group by ?customer
+     }
+     ?customer rdf:type ?cn
+    }
+    ```
+=== "SQL"
+    ```sql
+    SELECT counts.CustomerID, CustomerName, TotalOrders
+    FROM (
+     SELECT Customers.CustomerID, COUNT(Orders.OrderID) AS TotalOrders
+     FROM Customers
+     INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+     GROUP BY Customers.CustomerID
+    ) counts
+    JOIN Customers on Customers.CustomerID = counts.CustomerID
+    ORDER BY TotalOrders DESC;
+    ```
 
 ##### List products that have never been ordered
 ```sql
@@ -257,3 +341,4 @@ SELECT Orders.OrderID, Orders.OrderDate, Orders.ShipCountry
 FROM Orders
 WHERE Orders.ShipCountry = 'Germany';
 ```
+-->
