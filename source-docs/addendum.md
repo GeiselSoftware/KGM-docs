@@ -1,33 +1,6 @@
 # Addendum
 ## Appendix A: prefixes
 
-Prefixes often mentioned in KGM docs, code and examples are:
-
-- *kgm:* - main KGM prefix. Used to construct KGM definitions stored in default graph. It also containes some auxiliarly predicates which are used by KGM vizual applications.
-- *ab:* - Alice-Bob examples
-- *nw:* - NorthWind examples
-
-### Prefix *kgm:*
-
-*kgm:* is prefix introduced for KGM users. It defines set of RDF predicates used to specify how certain RDF graph is stored in GDB server:
-```
-@prefix kgm: <http://www.geisel-software.com/RDF/KGM#> .
-@prefix mydata: <mydata:> .
-
-mydata:g1 rdf:type kgm:DataGraph .
-mydata:g1 kgm:path "/G1" .
-mydata:g2 rdf:type kgm:SHACLGraph .
-mydata:g2 kgm:path "/G1.shacl" .
-mydata:g2 kgm:is-shacl-graph-for mydata:g1 .
-```
-
-kgm predicates:
-
-- kgm:has-a
-- kgm:path
-- kgm:graph-uri
-
-
 ### Well-known prefixes
 ```
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -37,11 +10,17 @@ kgm predicates:
 @prefix dash: <http://datashapes.org/dash#> .
 ```
 
-### KGM example prefixes
+### KGM prefixes
 ```
+@prefix kgm: <http://www.geisel-software.com/RDF/KGM#> .
 @prefix ab: <http://www.geisel-software.com/RDF/alice-bob#> .
 @prefix nw: <http://www.geisel-software.com/RDF/NorthWind#> .
+@prefix TU: <http://www.geisel-software.com/RDF/KGM/TestUser#> .
 ```
+
+### Prefix *kgm:*
+
+TBC
 
 ## Appendix B: SHACL notes
 
