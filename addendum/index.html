@@ -272,15 +272,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prefix-kgm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prefix kgm:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#well-known-prefixes" class="md-nav__link">
     <span class="md-ellipsis">
       Well-known prefixes
@@ -293,6 +284,15 @@
   <a href="#kgm-example-prefixes" class="md-nav__link">
     <span class="md-ellipsis">
       KGM example prefixes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefix-kgm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prefix kgm:
     </span>
   </a>
   
@@ -366,15 +366,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prefix-kgm" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prefix kgm:
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#well-known-prefixes" class="md-nav__link">
     <span class="md-ellipsis">
       Well-known prefixes
@@ -387,6 +378,15 @@
   <a href="#kgm-example-prefixes" class="md-nav__link">
     <span class="md-ellipsis">
       KGM example prefixes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefix-kgm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prefix kgm:
     </span>
   </a>
   
@@ -432,29 +432,6 @@
 
 <h1 id="addendum">Addendum<a class="headerlink" href="#addendum" title="Permanent link">&para;</a></h1>
 <h2 id="appendix-a-prefixes">Appendix A: prefixes<a class="headerlink" href="#appendix-a-prefixes" title="Permanent link">&para;</a></h2>
-<p>Prefixes often mentioned in <abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> docs, code and examples are:</p>
-<ul>
-<li><em>kgm:</em> - main <abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> prefix. Used to construct <abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> definitions stored in default graph. It also containes some auxiliarly predicates which are used by <abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> vizual applications.</li>
-<li><em>ab:</em> - Alice-Bob examples</li>
-<li><em>nw:</em> - NorthWind examples</li>
-</ul>
-<h3 id="prefix-kgm">Prefix <em>kgm:</em><a class="headerlink" href="#prefix-kgm" title="Permanent link">&para;</a></h3>
-<p><em>kgm:</em> is prefix introduced for <abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> users. It defines set of <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> predicates used to specify how certain <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> graph is stored in GDB server:
-<div class="highlight"><pre><span></span><code>@prefix kgm: &lt;http://www.geisel-software.com/RDF/KGM#&gt; .
-@prefix mydata: &lt;mydata:&gt; .
-
-mydata:g1 rdf:type kgm:DataGraph .
-mydata:g1 kgm:path &quot;/G1&quot; .
-mydata:g2 rdf:type kgm:SHACLGraph .
-mydata:g2 kgm:path &quot;/G1.shacl&quot; .
-mydata:g2 kgm:is-shacl-graph-for mydata:g1 .
-</code></pre></div></p>
-<p>kgm predicates:</p>
-<ul>
-<li>kgm:has-a</li>
-<li>kgm:path</li>
-<li>kgm:graph-uri</li>
-</ul>
 <h3 id="well-known-prefixes">Well-known prefixes<a class="headerlink" href="#well-known-prefixes" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
@@ -465,7 +442,10 @@ mydata:g2 kgm:is-shacl-graph-for mydata:g1 .
 <h3 id="kgm-example-prefixes"><abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> example prefixes<a class="headerlink" href="#kgm-example-prefixes" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code>@prefix ab: &lt;http://www.geisel-software.com/RDF/alice-bob#&gt; .
 @prefix nw: &lt;http://www.geisel-software.com/RDF/NorthWind#&gt; .
+@prefix TU: &lt;http://www.geisel-software.com/RDF/KGM/TestUser#&gt; .
 </code></pre></div>
+<h3 id="prefix-kgm">Prefix <em>kgm:</em><a class="headerlink" href="#prefix-kgm" title="Permanent link">&para;</a></h3>
+<p>TBC</p>
 <h2 id="appendix-b-shacl-notes">Appendix B: <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> notes<a class="headerlink" href="#appendix-b-shacl-notes" title="Permanent link">&para;</a></h2>
 <p>Example of <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> definitions: <a href="https://github.com/pyjanitor-devs/pyjviz/blob/main/rdflog.shacl.ttl">https://github.com/pyjanitor-devs/pyjviz/blob/main/rdflog.shacl.ttl</a></p>
 <p>TopQuandrant <abbr title="https://en.wikipedia.org/wiki/SHACL">SHACL</abbr> implementation: <a href="https://github.com/TopQuadrant/shacl">https://github.com/TopQuadrant/shacl</a></p>
