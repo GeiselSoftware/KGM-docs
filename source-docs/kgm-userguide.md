@@ -70,25 +70,50 @@ kgm import /alice-bob https://geiselsoftware.github.io/KGM-docs/examples/alice-b
 
 #### Alice-Bob queries
 
-```sparql
-prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
-prefix ab: <http://www.geisel-software.com/RDF/alice-bob#>
+##### Alice
 
-select ?h_name ?city ?f_name ?f_city where {
- ?g kgm:path "/alice-bob"
- graph ?g {
-  bind("Alice" as ?h_name)
-  ?human ab:name ?h_name.
-  ?human ab:livesIn ?loc.
-  ?loc ab:city-name ?city.
-  ?human ab:friendOf ?friend.
-  ?friend ab:name ?f_name.
-  ?friend ab:livesIn ?f_loc.
-  ?f_loc ab:city-name ?f_city
- }
-}
-```
+=== "long"
+    ```sparql
+    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+    prefix ab: <http://www.geisel-software.com/RDF/alice-bob#>
+
+    select ?h_name ?city ?f_name ?f_city
+    where {
+     ?g kgm:path "/alice-bob"
+     graph ?g {
+      bind("Alice" as ?h_name)
+      ?human ab:name ?h_name.
+      ?human ab:livesIn ?loc.
+      ?human ab:friendOf ?friend.
+      ?loc ab:city-name ?city.
+      ?friend ab:name ?f_name.
+      ?friend ab:livesIn ?f_loc.
+      ?f_loc ab:city-name ?f_city
+     }
+    }
+    ```
+=== "short"
+    ```sparql
+    prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+    prefix ab: <http://www.geisel-software.com/RDF/alice-bob#>
+
+    select ?h_name ?city ?f_name ?f_city {
+     ?g kgm:path "/alice-bob"
+     graph ?g {
+      bind("Alice" as ?h_name)
+      ?human ab:name ?h_name; ab:livesIn ?loc;
+             ab:friendOf ?friend.
+      ?loc ab:city-name ?city.
+      ?friend ab:name ?f_name; ab:livesIn ?f_loc.
+      ?f_loc ab:city-name ?f_city
+     }
+    }
+    ```
+    
+##### Pets
+
 
 ```sparql
 prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
