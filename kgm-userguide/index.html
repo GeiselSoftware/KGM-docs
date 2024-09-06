@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
       
 
@@ -244,9 +244,42 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kgm-path" class="md-nav__link">
+  <a href="#how-kgm-manages-graphs" class="md-nav__link">
     <span class="md-ellipsis">
-      KGM path
+      How KGM manages graphs?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How KGM manages graphs?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rdf-quads" class="md-nav__link">
+    <span class="md-ellipsis">
+      RDF quads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kgm-default-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      KGM default graph
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kgm-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      KGM commands
     </span>
   </a>
   
@@ -382,9 +415,42 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kgm-path" class="md-nav__link">
+  <a href="#how-kgm-manages-graphs" class="md-nav__link">
     <span class="md-ellipsis">
-      KGM path
+      How KGM manages graphs?
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How KGM manages graphs?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rdf-quads" class="md-nav__link">
+    <span class="md-ellipsis">
+      RDF quads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kgm-default-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      KGM default graph
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kgm-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      KGM commands
     </span>
   </a>
   
@@ -447,8 +513,44 @@
 $ source ~/venv/kgm/bin/activate
 $ pip install py-packages/kgm
 </code></pre></div>
-<h2 id="kgm-path">K<span/>GM path<a class="headerlink" href="#kgm-path" title="Permanent link">&para;</a></h2>
-<p><abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> provides the way to organize the knowledge graphs in the way similar to files in traditional filesystem.</p>
+<h2 id="how-kgm-manages-graphs">How K<span/>GM manages graphs?<a class="headerlink" href="#how-kgm-manages-graphs" title="Permanent link">&para;</a></h2>
+<p><abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> provides the way to organize the knowledge graphs in the way similar to files in traditional filesystem. It does that using particular feature which is a part of <abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> definitions: fourth entry of <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triple</abbr>.</p>
+<h3 id="rdf-quads"><abbr title="https://www.w3.org/TR/rdf12-turtle/ &quot;Resource Description Framework - Turtle&quot;">RDF</abbr> quads<a class="headerlink" href="#rdf-quads" title="Permanent link">&para;</a></h3>
+<p>That's right - there are four entries available in <abbr title="https://www.w3.org/TR/rdf12-concepts/#section-triples">RDF triples</abbr>. Fourth entry provides the way to assign triple to particular graph. Consider <a href="https://www.w3.org/TR/rdf12-n-quads/#simple-triples">the example</a> of quad:</p>
+<div class="highlight"><pre><span></span><code>@prefix e: &lt;http://example.org/#&gt; .
+@prefix r: &lt;http://www.perceive.net/schemas/relationship/&gt; .
+e:spiderman r:enemyOf e:green-goblin &lt;http://example.org/graphs/spiderman&gt; .
+</code></pre></div>
+<p>Fourth entry meaning that the triple belong to graph <code>http://example.org/graphs/spiderman</code>. This graph <abbr title="https://en.wikipedia.org/wiki/Uniform_Resource_Identifier">URI</abbr> can be used to specify graph in <abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> statement using <code>graph</code> keyword:</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">select</span> <span class="nv">?s</span> <span class="nv">?p</span> <span class="nv">?o</span> <span class="k">where</span> <span class="p">{</span>
+ <span class="k">graph</span> <span class="nl">&lt;http://example.org/graphs/spiderman&gt;</span> <span class="p">{</span>
+  <span class="nv">?s</span> <span class="nv">?p</span> <span class="nv">?o</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> assumption is there are query clauses which are not in <code>graph</code> group then query will work with triples from default graph.</p>
+<h3 id="kgm-default-graph"><abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> default graph<a class="headerlink" href="#kgm-default-graph" title="Permanent link">&para;</a></h3>
+<p><abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> uses default graph to store triples to describe all user graphs. E.g:
+<div class="highlight"><pre><span></span><code>@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+@prefix kgm: &lt;http://www.geisel-software.com/RDF/KGM#&gt;
+@prefix ab: &lt;http://www.geisel-software.com/RDF/alice-bob#&gt;
+
+kgm:Graph--27f7b699-8054-49a3-88c6-e80636ae9823 rdf:type kgm:Graph .
+kgm:Graph--27f7b699-8054-49a3-88c6-e80636ae9823 kgm:path &quot;/alice-bob&quot; .
+</code></pre></div></p>
+<p>It allows to use <code>graph</code> clause in <abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr> to address particular user graph by <code>kgm:path</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
+<span class="k">prefix</span> <span class="nn">ab</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/alice-bob#&gt;</span>
+
+<span class="k">select</span> <span class="o">*</span> <span class="k">where</span> <span class="p">{</span>
+ <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/alice-bob&quot;</span> <span class="p">.</span>
+ <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+  <span class="nv">?s</span> <span class="nv">?p</span> <span class="nv">?o</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="kgm-commands"><abbr title="https://geiselsoftware.github.io/KGM-docs/">KGM</abbr> commands<a class="headerlink" href="#kgm-commands" title="Permanent link">&para;</a></h2>
 <p>One of the way to populate KG is to dowload .ttl file using <code>kgm import</code> command:
 <div class="highlight"><pre><span></span><code><span class="gp">$ </span>kgm<span class="w"> </span>import<span class="w"> </span>/alice-bob.shacl<span class="w"> </span>http://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.shacl.ttl
 <span class="go">/alice-bob.shacl http://www.geisel-software.com/RDF/KGM#SHACLGraph--40c4faaf-f311-4112-bfec-a945b4f7cdbb</span>
