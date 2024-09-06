@@ -10,8 +10,59 @@ $ source ~/venv/kgm/bin/activate
 $ pip install py-packages/kgm
 ```
 
-## K<span/>GM path
-KGM provides the way to organize the knowledge graphs in the way similar to files in traditional filesystem.
+## How K<span/>GM manages graphs?
+KGM provides the way to organize the knowledge graphs in the way similar to files in traditional filesystem. It does that using particular feature which is a part of RDF definitions: fourth entry of RDF triple.
+
+### RDF quads
+
+That's right - there are four entries available in RDF triples. Fourth entry provides the way to assign triple to particular graph. Consider [the example](https://www.w3.org/TR/rdf12-n-quads/#simple-triples) of quad:
+
+```
+@prefix e: <http://example.org/#> .
+@prefix r: <http://www.perceive.net/schemas/relationship/> .
+e:spiderman r:enemyOf e:green-goblin <http://example.org/graphs/spiderman> .
+```
+
+Fourth entry meaning that the triple belong to graph `http://example.org/graphs/spiderman`. This graph URI can be used to specify graph in SPARQL statement using `graph` keyword:
+
+```sparql
+select ?s ?p ?o where {
+ graph <http://example.org/graphs/spiderman> {
+  ?s ?p ?o
+ }
+}
+```
+SPARQL assumption is there are query clauses which are not in `graph` group then query will work with triples from default graph.
+
+
+### KGM default graph
+
+KGM uses default graph to store triples to describe all user graphs. E.g:
+```
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+@prefix ab: <http://www.geisel-software.com/RDF/alice-bob#>
+
+kgm:Graph--27f7b699-8054-49a3-88c6-e80636ae9823 rdf:type kgm:Graph .
+kgm:Graph--27f7b699-8054-49a3-88c6-e80636ae9823 kgm:path "/alice-bob" .
+```
+
+It allows to use `graph` clause in SPARQL to address particular user graph by `kgm:path`:
+
+```sparql
+prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix kgm: <http://www.geisel-software.com/RDF/KGM#>
+prefix ab: <http://www.geisel-software.com/RDF/alice-bob#>
+
+select * where {
+ ?g kgm:path "/alice-bob" .
+ graph ?g {
+  ?s ?p ?o
+ }
+}
+```
+
+## KGM commands
 
 One of the way to populate KG is to dowload .ttl file using `kgm import` command:
 ```console

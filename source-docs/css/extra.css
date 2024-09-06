@@ -1,14 +1,15 @@
 /* overrides/extra.css */
 
 .highlight {
-    font-style: italic;
+    font-style: normal;
+    font-weight: bold;
 }
 
 /* console output */
 .highlight .go {
     color: black;
-    font-weight: bold;
-    font-style: normal;
+    font-weight: normal;
+    font-style: italic;
 }
 
 /* console  prompt */
@@ -22,6 +23,3 @@
 .highlight .nb {
     color: black;
 }
-
-
-
