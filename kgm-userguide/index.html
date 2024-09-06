@@ -495,24 +495,51 @@ $ pip install py-packages/kgm
 kgm import /alice-bob https://geiselsoftware.github.io/KGM-docs/examples/alice-bob/ab.data.ttl
 </code></pre></div>
 <h4 id="alice-bob-queries">Alice-Bob queries<a class="headerlink" href="#alice-bob-queries" title="Permanent link">&para;</a></h4>
+<h5 id="alice">Alice<a class="headerlink" href="#alice" title="Permanent link">&para;</a></h5>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">long</label><label for="__tabbed_1_2">short</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
 <span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
 <span class="k">prefix</span> <span class="nn">ab</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/alice-bob#&gt;</span>
 
-<span class="k">select</span> <span class="nv">?h_name</span> <span class="nv">?city</span> <span class="nv">?f_name</span> <span class="nv">?f_city</span> <span class="k">where</span> <span class="p">{</span>
+<span class="k">select</span> <span class="nv">?h_name</span> <span class="nv">?city</span> <span class="nv">?f_name</span> <span class="nv">?f_city</span>
+<span class="k">where</span> <span class="p">{</span>
  <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/alice-bob&quot;</span>
  <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
   <span class="k">bind</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span> <span class="k">as</span> <span class="nv">?h_name</span><span class="p">)</span>
   <span class="nv">?human</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">name</span> <span class="nv">?h_name</span><span class="p">.</span>
   <span class="nv">?human</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">livesIn</span> <span class="nv">?loc</span><span class="p">.</span>
-  <span class="nv">?loc</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">city-name</span> <span class="nv">?city</span><span class="p">.</span>
   <span class="nv">?human</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">friendOf</span> <span class="nv">?friend</span><span class="p">.</span>
+  <span class="nv">?loc</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">city-name</span> <span class="nv">?city</span><span class="p">.</span>
   <span class="nv">?friend</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">name</span> <span class="nv">?f_name</span><span class="p">.</span>
   <span class="nv">?friend</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">livesIn</span> <span class="nv">?f_loc</span><span class="p">.</span>
   <span class="nv">?f_loc</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">city-name</span> <span class="nv">?f_city</span>
  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
+<span class="k">prefix</span> <span class="nn">ab</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/alice-bob#&gt;</span>
+
+<span class="k">select</span> <span class="nv">?h_name</span> <span class="nv">?city</span> <span class="nv">?f_name</span> <span class="nv">?f_city</span> <span class="p">{</span>
+ <span class="nv">?g</span> <span class="nn">kgm</span><span class="p">:</span><span class="nt">path</span> <span class="s">&quot;/alice-bob&quot;</span>
+ <span class="k">graph</span> <span class="nv">?g</span> <span class="p">{</span>
+  <span class="k">bind</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span> <span class="k">as</span> <span class="nv">?h_name</span><span class="p">)</span>
+  <span class="nv">?human</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">name</span> <span class="nv">?h_name</span><span class="p">;</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">livesIn</span> <span class="nv">?loc</span><span class="p">;</span>
+         <span class="nn">ab</span><span class="p">:</span><span class="nt">friendOf</span> <span class="nv">?friend</span><span class="p">.</span>
+  <span class="nv">?loc</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">city-name</span> <span class="nv">?city</span><span class="p">.</span>
+  <span class="nv">?friend</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">name</span> <span class="nv">?f_name</span><span class="p">;</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">livesIn</span> <span class="nv">?f_loc</span><span class="p">.</span>
+  <span class="nv">?f_loc</span> <span class="nn">ab</span><span class="p">:</span><span class="nt">city-name</span> <span class="nv">?f_city</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h5 id="pets">Pets<a class="headerlink" href="#pets" title="Permanent link">&para;</a></h5>
 <div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
 <span class="k">prefix</span> <span class="nn">kgm</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/KGM#&gt;</span>
 <span class="k">prefix</span> <span class="nn">ab</span><span class="p">:</span> <span class="nl">&lt;http://www.geisel-software.com/RDF/alice-bob#&gt;</span>
@@ -549,7 +576,7 @@ kgm import /alice-bob https://geiselsoftware.github.io/KGM-docs/examples/alice-b
 </code></pre></div>
 <h4 id="query-examples">Query examples<a class="headerlink" href="#query-examples" title="Permanent link">&para;</a></h4>
 <h5 id="counts">Counts<a class="headerlink" href="#counts" title="Permanent link">&para;</a></h5>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_1_2">SQL</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_2_2">SQL</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
@@ -577,7 +604,7 @@ kgm import /alice-bob https://geiselsoftware.github.io/KGM-docs/examples/alice-b
 </div>
 </div>
 <h5 id="counts-2">Counts 2<a class="headerlink" href="#counts-2" title="Permanent link">&para;</a></h5>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_2_2">SQL</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_3_2">SQL</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
@@ -613,7 +640,7 @@ kgm import /alice-bob https://geiselsoftware.github.io/KGM-docs/examples/alice-b
 </div>
 </div>
 <h5 id="get-all-products-and-their-suppliers">Get all products and their suppliers<a class="headerlink" href="#get-all-products-and-their-suppliers" title="Permanent link">&para;</a></h5>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_3_2">SQL</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_4_2">SQL</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
@@ -639,7 +666,7 @@ kgm import /alice-bob https://geiselsoftware.github.io/KGM-docs/examples/alice-b
 </div>
 </div>
 <h5 id="list-all-orders-with-customer-and-employee-information">List all orders with customer and employee information<a class="headerlink" href="#list-all-orders-with-customer-and-employee-information" title="Permanent link">&para;</a></h5>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_4_2">SQL</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1"><abbr title="https://www.w3.org/TR/rdf-sparql-query/ &quot;SPARQL Query Language&quot;">SPARQL</abbr></label><label for="__tabbed_5_2">SQL</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="k">prefix</span> <span class="nn">rdf</span><span class="p">:</span> <span class="nl">&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>

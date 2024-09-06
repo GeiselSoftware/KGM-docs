@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://geiselsoftware.github.io/KGM-docs/</loc>
-         <lastmod>2024-09-05</lastmod>
+         <lastmod>2024-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://geiselsoftware.github.io/KGM-docs/abbreviations/</loc>
-         <lastmod>2024-09-05</lastmod>
+         <lastmod>2024-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://geiselsoftware.github.io/KGM-docs/addendum/</loc>
-         <lastmod>2024-09-05</lastmod>
+         <lastmod>2024-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://geiselsoftware.github.io/KGM-docs/backends/</loc>
-         <lastmod>2024-09-05</lastmod>
+         <lastmod>2024-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://geiselsoftware.github.io/KGM-docs/kgm-introduction/</loc>
-         <lastmod>2024-09-05</lastmod>
+         <lastmod>2024-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://geiselsoftware.github.io/KGM-docs/kgm-userguide/</loc>
-         <lastmod>2024-09-05</lastmod>
+         <lastmod>2024-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://geiselsoftware.github.io/KGM-docs/examples/alice-bob/</loc>
-         <lastmod>2024-09-05</lastmod>
+         <lastmod>2024-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://geiselsoftware.github.io/KGM-docs/examples/northwind/</loc>
-         <lastmod>2024-09-05</lastmod>
+         <lastmod>2024-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://geiselsoftware.github.io/KGM-docs/examples/rdflib/</loc>
-         <lastmod>2024-09-05</lastmod>
+         <lastmod>2024-09-06</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
