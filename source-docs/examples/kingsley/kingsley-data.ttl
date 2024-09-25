@@ -1,0 +1,71 @@
+@prefix : <http://www.geisel-software.com/RDF/KGM/TestUser#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Product a rdfs:Class.
+:ProductCategory a rdfs:Class.
+:Customer a rdfs:Class.
+:Invoice a rdfs:Class.
+:Order a rdfs:Class.
+:OrderItem a rdfs:Class.
+:DeliveryAddress a rdfs:Class.
+
+:Product1 a :Product ;
+    rdfs:label "Laptop" ;
+    :price 1200 ;
+    :category "Electronics" .
+:Product2 a :Product ;
+    rdfs:label "Mountain Bike" ;
+    :price 800 ;
+    :category "Sports Equipment" .
+:Product3 a :Product ;
+    rdfs:label "Novel: The Catcher in the Rye" ;
+    :price 15 ;
+    :category "Books" .
+
+:ElectronicsCategory a :ProductCategory ;
+    rdfs:label "Electronics" .
+
+:SportsEquipmentCategory a :ProductCategory ;
+    rdfs:label "Sports Equipment" .
+
+:BooksCategory a :ProductCategory ;
+    rdfs:label "Books" .
+
+:Customer1 a :Customer ;
+    rdfs:label "Alice" ;
+    :email "alice@example.com" ;
+    :phone "555-123-4567" ;
+    :has :DeliveryAddress1 .
+
+:Customer2 a :Customer ;
+    rdfs:label "Bob" ;
+    :email "bob@example.com" ;
+    :phone "555-987-6543" ;
+    :has :DeliveryAddress2 .
+
+:Customer3 a :Customer ;
+    rdfs:label "Charlie" ;
+    :email "charlie@example.com" ;
+    :phone "555-246-8101" ;
+    :has :DeliveryAddress3 .
+
+:DeliveryAddress1 a :DeliveryAddress ;
+    rdfs:label "Alice's Address" ;
+    :street "123 Main St" ;
+    :city "New York" ;
+    :state "NY" ;
+    :postalCode "10001" .
+
+:DeliveryAddress2 a :DeliveryAddress ;
+    rdfs:label "Bob's Address" ;
+    :street "456 Oak St" ;
+    :city "Los Angeles" ;
+    :state "CA" ;
+    :postalCode "90001" .
+
+:DeliveryAddress3 a :DeliveryAddress ;
+    rdfs:label "Charlie's Address" ;
+    :street "789 Pine St" ;
+    :city "Chicago" ;
+    :state "IL" ;
+    :postalCode "60601" .

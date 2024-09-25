@@ -1,0 +1,127 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.geisel-software.com/RDF/KGM/TestUser#Customer> a rdfs:Class,
+        sh:NodeShape ;
+    sh:closed true ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#email> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path rdfs:label ],
+        [ sh:class <http://www.geisel-software.com/RDF/KGM/TestUser#Order> ;
+            sh:minCount 0 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#places> ],
+        [ sh:class <http://www.geisel-software.com/RDF/KGM/TestUser#DeliveryAddress> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#has> ],
+        [ sh:class rdfs:Class ;
+            sh:minCount 1 ;
+            sh:path rdf:type ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#phone> ],
+        [ sh:class <http://www.geisel-software.com/RDF/KGM/TestUser#Invoice> ;
+            sh:minCount 0 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#liable-for> ] .
+
+<http://www.geisel-software.com/RDF/KGM/TestUser#DeliveryAddress> a rdfs:Class,
+        sh:NodeShape ;
+    sh:closed true ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#postalCode> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#street> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#city> ],
+        [ sh:class rdfs:Class ;
+            sh:minCount 1 ;
+            sh:path rdf:type ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#state> ] .
+
+<http://www.geisel-software.com/RDF/KGM/TestUser#Invoice> a rdfs:Class,
+        sh:NodeShape ;
+    sh:closed true ;
+    sh:property [ sh:class rdfs:Class ;
+            sh:minCount 1 ;
+            sh:path rdf:type ],
+        [ sh:class <http://www.geisel-software.com/RDF/KGM/TestUser#Order> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#covers> ] .
+
+<http://www.geisel-software.com/RDF/KGM/TestUser#Order> a rdfs:Class,
+        sh:NodeShape ;
+    sh:closed true ;
+    sh:property [ sh:class <http://www.geisel-software.com/RDF/KGM/TestUser#OrderItem> ;
+            sh:minCount 0 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#includes> ],
+        [ sh:class rdfs:Class ;
+            sh:minCount 1 ;
+            sh:path rdf:type ] .
+
+<http://www.geisel-software.com/RDF/KGM/TestUser#OrderItem> a rdfs:Class,
+        sh:NodeShape ;
+    sh:closed true ;
+    sh:property [ sh:class <http://www.geisel-software.com/RDF/KGM/TestUser#Product> ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#ordered-in> ],
+        [ sh:class rdfs:Class ;
+            sh:minCount 1 ;
+            sh:path rdf:type ] .
+
+<http://www.geisel-software.com/RDF/KGM/TestUser#Product> a rdfs:Class,
+        sh:NodeShape ;
+    sh:closed true ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path rdfs:label ],
+        [ sh:datatype xsd:integer ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#price> ],
+        [ sh:class rdfs:Class ;
+            sh:minCount 1 ;
+            sh:path rdf:type ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#category> ] .
+
+<http://www.geisel-software.com/RDF/KGM/TestUser#ProductCategory> a rdfs:Class,
+        sh:NodeShape ;
+    sh:closed true ;
+    sh:property [ sh:class rdfs:Class ;
+            sh:minCount 1 ;
+            sh:path rdf:type ],
+        [ sh:class <http://www.geisel-software.com/RDF/KGM/TestUser#Product> ;
+            sh:minCount 0 ;
+            sh:path <http://www.geisel-software.com/RDF/KGM/TestUser#contains> ],
+        [ sh:datatype xsd:string ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path rdfs:label ] .
+
+
